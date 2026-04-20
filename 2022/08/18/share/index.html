@@ -142,7 +142,7 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h4 id="分享我的博客搭建经历"><a href="#分享我的博客搭建经历" class="headerlink" title="*分享我的博客搭建经历"></a><font color="red" face="黑体">*分享我的博客搭建经历</font></h4><h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p><strong>1、阿里云服务器</strong></p>
+        <h4><span id="分享我的博客搭建经历"><font color="red" face="黑体">*分享我的博客搭建经历</font></span></h4><h4><span id="需求">需求</span></h4><p><strong>1、阿里云服务器</strong></p>
 <p><strong>2、本地电脑Node+git</strong></p>
 <p><strong>3、finalshell</strong></p>
 <p>finalshell下载  阿里云盘：</p>
@@ -155,7 +155,7 @@
 
 
 <hr>
-<h2 id="1-安装nginx"><a href="#1-安装nginx" class="headerlink" title="1.安装nginx"></a>1.安装nginx</h2><p>安装ngin需要相关的依赖库，我们先进行库的安装。</p>
+<h2><span id="1安装nginx">1.安装nginx</span></h2><p>安装ngin需要相关的依赖库，我们先进行库的安装。</p>
 <p><strong>1.1安装gcc gcc-c++</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gcc gcc-c++</span><br></pre></td></tr></table></figure>
 
@@ -174,20 +174,20 @@
 <p><strong>如图修改</strong></p>
 <img src="/2022/08/18/share/20220823171030.jpg" class>
 
-<h2 id="2-安装Git以及Node-js"><a href="#2-安装Git以及Node-js" class="headerlink" title="2.安装Git以及Node.js"></a>2.安装Git以及Node.js</h2><h2 id="2-1安装Node-js"><a href="#2-1安装Node-js" class="headerlink" title="2.1安装Node.js"></a>2.1安装Node.js</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">##回到/usr/local目录下</span><br><span class="line"></span><br><span class="line">curl -sL https://rpm.nodesource.com/setup_10.x | bash -</span><br><span class="line"></span><br><span class="line">yum install -y nodejs</span><br></pre></td></tr></table></figure>
+<h2><span id="2安装git以及nodejs">2.安装Git以及Node.js</span></h2><h2><span id="21安装nodejs">2.1安装Node.js</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">##回到/usr/local目录下</span><br><span class="line"></span><br><span class="line">curl -sL https://rpm.nodesource.com/setup_10.x | bash -</span><br><span class="line"></span><br><span class="line">yum install -y nodejs</span><br></pre></td></tr></table></figure>
 
 <p><strong>查看是否成功</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line"></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
 
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+<h3><span id="启动">启动</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
 
 <p><strong>启动成功</strong></p>
 <img src="/2022/08/18/share/20220823172215.jpg" class>
 
-<h2 id="2-2安装Git及配置仓库"><a href="#2-2安装Git及配置仓库" class="headerlink" title="2.2安装Git及配置仓库"></a>2.2安装Git及配置仓库</h2><p><strong>安装git及新建git用户</strong></p>
+<h2><span id="22安装git及配置仓库">2.2安装Git及配置仓库</span></h2><p><strong>安装git及新建git用户</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br><span class="line"></span><br><span class="line">adduser git</span><br><span class="line"></span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line"></span><br><span class="line">##vi 编辑文件</span><br><span class="line"></span><br><span class="line">vi /etc/sudoers</span><br><span class="line"></span><br><span class="line">添加 git ALL=(ALL) ALL</span><br><span class="line"></span><br><span class="line">chomd 400 /etc/shdoers</span><br><span class="line"></span><br><span class="line">sudo passwd git</span><br></pre></td></tr></table></figure>
 
-<h4 id="编辑完文件-保存退出-gt-键盘按esc键-后输入-wq"><a href="#编辑完文件-保存退出-gt-键盘按esc键-后输入-wq" class="headerlink" title="*编辑完文件 保存退出&gt; 键盘按esc键 后输入:wq"></a><font color="red" face="黑体">*编辑完文件 保存退出&gt; 键盘按esc键 后输入:wq</font></h4><p><strong>切换git用户</strong></p>
+<h4><span id="编辑完文件-保存退出gt-键盘按esc键-后输入wq"><font color="red" face="黑体">*编辑完文件 保存退出&gt; 键盘按esc键 后输入:wq</font></span></h4><p><strong>切换git用户</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line"></span><br><span class="line">cd ~</span><br><span class="line"></span><br><span class="line">mkdir .ssh</span><br><span class="line"></span><br><span class="line">cd .ssh</span><br><span class="line"></span><br><span class="line">vi authorized_keys</span><br><span class="line"></span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br><span class="line"></span><br><span class="line">chmod 700 ~/.ssh</span><br></pre></td></tr></table></figure>
 
 <p><strong>创建git仓库</strong></p>
@@ -197,7 +197,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ~/blog.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
 
 <p><font color="red" face="黑体">**以上指令都需要在su git 之后执行 如果中途断开重新连接过，需要重新执行 su git指令 进入git账户。</font></p>
-<h2 id="新建-x2F-home-x2F-www-x2F-website文件夹"><a href="#新建-x2F-home-x2F-www-x2F-website文件夹" class="headerlink" title="新建&#x2F;home&#x2F;www&#x2F;website文件夹"></a>新建&#x2F;home&#x2F;www&#x2F;website文件夹</h2><p><strong>在root用户下执行，所限先su root切换为root账户</strong></p>
+<h2><span id="新建x2fhomex2fwwwx2fwebsite文件夹">新建&#x2F;home&#x2F;www&#x2F;website文件夹</span></h2><p><strong>在root用户下执行，所限先su root切换为root账户</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line"></span><br><span class="line">输入密码</span><br><span class="line"></span><br><span class="line">cd /home</span><br><span class="line"></span><br><span class="line">mkdir www</span><br><span class="line"></span><br><span class="line">cd www</span><br><span class="line"></span><br><span class="line">mkdir website</span><br><span class="line"></span><br><span class="line">###修改文件夹权限 *重要</span><br><span class="line"></span><br><span class="line">chmod 777 /home/www/website</span><br><span class="line"></span><br><span class="line">chmod 777 /home/www</span><br></pre></td></tr></table></figure>
 
 <p><strong>本地物理机</strong></p>
@@ -206,10 +206,10 @@
 <p><strong>成功结果：</strong></p>
 <img src="/2022/08/18/share/20200330121546.jpg" class>
 
-<h2 id="修改本地配置文件"><a href="#修改本地配置文件" class="headerlink" title="*修改本地配置文件"></a><font color="red" face="黑体">*修改本地配置文件</font></h2><p><strong>hexo源文件_config.yml  不是主题模板下的_config.yml</strong></p>
+<h2><span id="修改本地配置文件"><font color="red" face="黑体">*修改本地配置文件</font></span></h2><p><strong>hexo源文件_config.yml  不是主题模板下的_config.yml</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@你的ip主机地址:/home/git/blog.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
-<h2 id="写入启动脚本"><a href="#写入启动脚本" class="headerlink" title="写入启动脚本"></a>写入启动脚本</h2><p><strong>在&#x2F;etc&#x2F;init.d&#x2F;路径下添加脚本文件，名称为nginx，内容如下：</strong></p>
+<h2><span id="写入启动脚本">写入启动脚本</span></h2><p><strong>在&#x2F;etc&#x2F;init.d&#x2F;路径下添加脚本文件，名称为nginx，内容如下：</strong></p>
 <p><strong>新建文件(不需要后缀)</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#Startup script for the nginx Web Server</span><br><span class="line">#chkconfig: 2345 85 15</span><br><span class="line">nginx=/usr/local/nginx/sbin/nginx</span><br><span class="line">conf=/usr/local/nginx/conf/nginx.conf</span><br><span class="line">case $1 in </span><br><span class="line">start)</span><br><span class="line">echo -n &quot;Starting Nginx&quot;</span><br><span class="line">$nginx -c $conf</span><br><span class="line">echo &quot; done.&quot;</span><br><span class="line">;;</span><br><span class="line">stop)</span><br><span class="line">echo -n &quot;Stopping Nginx&quot;</span><br><span class="line">killall -9 nginx</span><br><span class="line">echo &quot; done.&quot;</span><br><span class="line">;;</span><br><span class="line">test)</span><br><span class="line">$nginx -t -c $conf</span><br><span class="line">echo &quot;Success.&quot;</span><br><span class="line">;;</span><br><span class="line">reload)</span><br><span class="line">echo -n &quot;Reloading Nginx&quot;</span><br><span class="line">ps auxww | grep nginx | grep master | awk &#x27;&#123;print $2&#125;&#x27; | xargs kill -HUP</span><br><span class="line">echo &quot; done.&quot;</span><br><span class="line">;;</span><br><span class="line">restart)</span><br><span class="line">$nginx -s reload</span><br><span class="line">echo &quot;reload done.&quot;</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">echo &quot;Usage: $0 &#123;start|restart|reload|stop|test|show&#125;&quot;</span><br><span class="line">;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
 
@@ -292,7 +292,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>14</span>
+        <span>18</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -355,14 +355,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/Githube/hexo/">
-            hexo (2)
+          <a href="/categories/html-css/">
+            html+css (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/html-css/">
-            html+css (1)
+          <a href="/categories/Githube/hexo/">
+            hexo (2)
           </a>
         </li>
       
@@ -379,7 +379,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Centos/" style="font-size: 12.5px;" class="tags-cloud-3">Centos</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/js/" style="font-size: 17.5px;" class="tags-cloud-8">js</a> <a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 20px;" class="tags-cloud-10">分享</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;" class="tags-cloud-5">博客</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;" class="tags-cloud-0">数组</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 10px;" class="tags-cloud-0">运维</a>
+      <a href="/tags/Centos/" style="font-size: 12.5px;" class="tags-cloud-3">Centos</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/js/" style="font-size: 17.5px;" class="tags-cloud-8">js</a> <a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 20px;" class="tags-cloud-10">分享</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;" class="tags-cloud-5">博客</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;" class="tags-cloud-0">数组</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 12.5px;" class="tags-cloud-3">运维</a>
     </div>
   </div>
 </section>

@@ -136,9 +136,9 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="什么是原型"><a href="#什么是原型" class="headerlink" title="什么是原型"></a>什么是原型</h3><h4 id="什么是原型（实例"><a href="#什么是原型（实例" class="headerlink" title="什么是原型（实例"></a>什么是原型（实例</h4><p><strong>任何对象实例都有一个原型，也叫原型对象，</strong>这个原型对象由对象的内置属性_proto_指向它的构造函数prototype指向的对象，及任何对象都是由一个构造函数创建的，但是不是每一个对象都有prototype，只有方法才有prototype。</p>
+        <h3><span id="什么是原型">什么是原型</span></h3><h4><span id="什么是原型实例">什么是原型（实例</span></h4><p><strong>任何对象实例都有一个原型，也叫原型对象，</strong>这个原型对象由对象的内置属性_proto_指向它的构造函数prototype指向的对象，及任何对象都是由一个构造函数创建的，但是不是每一个对象都有prototype，只有方法才有prototype。</p>
 <p><strong>js每个函数都有一个prototype属性，prototype指向一个对象，当函数当作构造函数时，prototype起到了类似class的作用</strong></p>
-<h4 id="什么是原型链"><a href="#什么是原型链" class="headerlink" title="什么是原型链"></a>什么是原型链</h4><p>​       原型链基本思想是利用原型让一个引用类型继承另外一个引用类型的属性和方法。我们知道，每个构造函数都有一个原型对象，每个原型对象都有一个只想构造函数的指针，而实例又饱含一个指向原型对象的内部指针。</p>
+<h4><span id="什么是原型链">什么是原型链</span></h4><p>​       原型链基本思想是利用原型让一个引用类型继承另外一个引用类型的属性和方法。我们知道，每个构造函数都有一个原型对象，每个原型对象都有一个只想构造函数的指针，而实例又饱含一个指向原型对象的内部指针。</p>
 <p>​       原型链的核心就是依赖对象的_proto_的指向，当自身不存在的属性时，就一层层地拔出创建的对象的构造函数，直到Object时，就没有_proto_指向。</p>
 <p><strong>prototype起到类似与其他语言class的作用</strong></p>
 <p>因为_proto_实质找的是prototype，所以我们只要找到这个链子上的构造函数的prototype。其中OBject.prototype是没有_proto_属性的，他&#x3D;&#x3D;null。</p>
@@ -147,7 +147,7 @@
 <p>原型继承是js的一种继承方式，原型链是继承的主要方式，其思路就是利用原型让一个引用类继承另外一个类的属性和方法</p>
 <p>原型继承：原型成员可以被和其相关的对象共享同意特性，可以实现继承，这种继承方式就叫原型继承（继承衣钵</p>
 <p>实例都有_proto_指向构造函数，构造函数可以通过prototype来继承共享</p>
-<h2 id="普通函数与构造函数的区别"><a href="#普通函数与构造函数的区别" class="headerlink" title="普通函数与构造函数的区别"></a>普通函数与构造函数的区别</h2><ol>
+<h2><span id="普通函数与构造函数的区别">普通函数与构造函数的区别</span></h2><ol>
 <li><strong>构造函数也是普通函数，创建方式与普通函数相同</strong></li>
 <li><strong>调用方式不同，普通函数直接调用，构造函数需要new</strong></li>
 <li><strong>调用不同，构造函数内部会创建一个新对象（实例，普通函数不会</strong></li>
@@ -228,7 +228,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>14</span>
+        <span>18</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -291,14 +291,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/Githube/hexo/">
-            hexo (2)
+          <a href="/categories/html-css/">
+            html+css (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/html-css/">
-            html+css (1)
+          <a href="/categories/Githube/hexo/">
+            hexo (2)
           </a>
         </li>
       
@@ -315,7 +315,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Centos/" style="font-size: 12.5px;" class="tags-cloud-3">Centos</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/js/" style="font-size: 17.5px;" class="tags-cloud-8">js</a> <a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 20px;" class="tags-cloud-10">分享</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;" class="tags-cloud-5">博客</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;" class="tags-cloud-0">数组</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 10px;" class="tags-cloud-0">运维</a>
+      <a href="/tags/Centos/" style="font-size: 12.5px;" class="tags-cloud-3">Centos</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/js/" style="font-size: 17.5px;" class="tags-cloud-8">js</a> <a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 20px;" class="tags-cloud-10">分享</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;" class="tags-cloud-5">博客</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;" class="tags-cloud-0">数组</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 12.5px;" class="tags-cloud-3">运维</a>
     </div>
   </div>
 </section>
