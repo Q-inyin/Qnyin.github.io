@@ -1,7 +1,7 @@
 ---
 title: 使用 JSBridge 与原生 IOS、Android 进行交互
-date: 2026-04-20 22:40:12
-tags:
+date: 2024-04-20 22:40:12
+tags: ['分享','Android']
 ---
 
 # 使用 JSBridge 与原生 IOS、Android 进行交互（含H5、Android、IOS端代码，附 Demo）

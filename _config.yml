@@ -13,7 +13,8 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://q-inyin.github.io
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -103,17 +104,12 @@ theme: flex-block
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Q-inyin/Qinyin.github.io.git
+  repo: https://github.com/Q-inyin/Q-inyin.github.io.git
   branch: master
-  aplayer:
-    enable: true
-    meting: false
-	
-markdown:
-  render:
-    html: true
-    xhtmlOut: false
-    breaks: true
-    linkify: true
-    typographer: true
   
+toc:
+  enable: true
+  min_depth: 2
+  max_depth: 3
+  class_name: toc
+  include_script: true

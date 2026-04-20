@@ -1,5 +1,7 @@
 ---
 title: JavaScript中数组遍历的方式
+date: 2022-11-17 02:19:07
+updated: 2026-04-21 02:19:07
 categories: ['JavaScript']
 tags: ['js','数组','分享']
 cover: https://w.wallhaven.cc/full/z8/wallhaven-z8kkxo.jpg
