@@ -137,7 +137,11 @@
         <div class="aplayer-box" data-name="Starlight" data-artist="odinmann" data-url="/music/Starlight.mp3" data-cover="/images/music.png"></div>
 
 <hr>
-<p><strong>厦门一个在我毕业迷茫的时候收留我的城市，在我难过的时候喜欢去海堤坐坐</strong></p>
+<p><strong>在厦门的那段时间，我总觉得自己像一只刚上岸的鱼。</strong></p>
+<p><strong>城市很美，海风、落日、街道都刚刚好，</strong><br> <strong>但生活并不会因为风景温柔就变得容易。</strong></p>
+<p><strong>我在这里找工作、碰壁、再尝试，</strong><br> <strong>投出的简历像漂进海里的瓶子，很少有回音。</strong></p>
+<p><strong>后来我离开了厦门。</strong><br> <strong>不是逃离，而是带着一点不甘，去寻找下一个可能。</strong></p>
+<p><strong>如果说它留给我什么，</strong><br><strong>那大概是——在不被回应的日子里，学会坚持。</strong></p>
 <hr>
 <p><strong>清晨的集美大桥</strong></p>
 <img src="/2026/04/09/takeabout/emen1.jpg" class>
@@ -148,6 +152,9 @@
 <p><strong>2025&#x2F;10国庆的音乐沙滩</strong></p>
 <img src="/2026/04/09/takeabout/emen3.jpg" class>
 
+<p><strong>长堤的厦门大桥</strong></p>
+<img src="/2026/04/09/takeabout/emen9.jpg" class>
+
 <p><strong>我也不知大在哪儿 我也不知道去哪儿</strong></p>
 <img src="/2026/04/09/takeabout/emen4.jpg" class>
 
@@ -157,13 +164,16 @@
 <p><strong>具象化的俩人</strong></p>
 <img src="/2026/04/09/takeabout/emen6.jpg" class>
 
-<p><strong>再见厦门</strong></p>
+<p><strong>再见厦门 é mēn</strong></p>
 <img src="/2026/04/09/takeabout/emen7.jpg" class>
 
 <hr>
-<p><strong>博客</strong></p>
-<p>基于<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>的个人博客，目的是偶尔 分享 记录 生活，写写笔记啥的。</p>
+<img src="/2026/04/09/takeabout/emen10.jpg" class>
 
+<hr>
+<p><strong>蓝天碧海飞白鹭 波光云影泛渔舟</strong></p>
+<p>海景画卷尽展眼前 厦门地铁带您体验城在海上  海在城中</p>
+<img src="/2026/04/09/takeabout/emen8.jpg" class>
       </section>
 
       
@@ -308,14 +318,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/Githube/hexo/">
-            hexo (2)
+          <a href="/categories/html-css/">
+            html+css (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/html-css/">
-            html+css (1)
+          <a href="/categories/Githube/hexo/">
+            hexo (2)
           </a>
         </li>
       
@@ -377,7 +387,27 @@
     
 
     <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
-
+	
+	<div>
+	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+	    var now = new Date();
+	    function createtime() {
+	        var grt= new Date("08/11/2022 00:00:00");
+	        now.setTime(now.getTime()+250);
+	        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+	        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+	        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+	        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+	        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+	        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+	        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+	        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+	    }
+	setInterval("createtime()",250);
+	</script>
+	</div>
+	
     <p>
       <a href="javascript:;" id="theme-light">🌞 浅色</a>
       <a href="javascript:;" id="theme-dark">🌛 深色</a>
