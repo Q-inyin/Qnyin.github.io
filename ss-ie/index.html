@@ -25,7 +25,7 @@
 
   
 
-  <title>Docker 创建与恢复 MySQL 数据库 | Jon憨憨的博客</title>
+  <title>ss_ie | Jon憨憨的博客</title>
 
   
 
@@ -47,7 +47,7 @@
   <div class="root-container">
     
 <!-- header container -->
-<header class="header-container post">
+<header class="header-container">
   
     <div class="post-image" style="background-image: url(/images/wallhaven-q2vo8d.jpg)"></div>
   
@@ -95,176 +95,37 @@
 
   
   
-    <div class="header-content">
-      <div class="post-text layout-block">
-        <div class="layout-margin">
-          <h1 class="title-wrap">Docker 创建与恢复 MySQL 数据库</h1>
-          <h2 class="title-sub-wrap">
-            <strong>微生翊</strong>
-            <span>发布于</span>
-            <time  class="article-date" datetime="2026-04-20T18:36:47.000Z" itemprop="datePublished">2026-04-21</time>
-          </h2>
-          <ul class="wrap-list dark">
-  
-</ul>
-          <ul class="wrap-list dark">
-  
-    <li><a href="/tags/%E5%AE%9E%E6%96%BD/">🏷️ 实施</a></li>
-  
-    <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">🏷️ 数据库</a></li>
-  
-</ul>
-        </div>
-      </div>
-    </div>
-  
 
   
+  
+    <div class="header-content">
+      <div class="post-text layout-block layout-padding">
+        <h1 class="title-wrap">ss_ie</h1>
+        
+      </div>
+    </div>
   
   
   <link rel="stylesheet" href="https://unpkg.com/aplayer/dist/APlayer.min.css">
 </header>
 
-    <!-- 文章 -->
+    <!-- 分页(其他自定义页面) -->
 
-<!-- 文章内容 -->
+<!-- 自定义页面 -->
+
 <div class="body-container">
   <article class="content-container layout-block post-container">
     <div class="article-info">
       
-      
-      
-      
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1><span id="docker-创建与恢复-mysql-数据库">Docker 创建与恢复 MySQL 数据库</span></h1><p>本文介绍如何在 Docker 中创建 MySQL 容器、初始化数据库，以及从备份文件恢复数据库。  </p>
-<hr>
-<h2><span id="目录">目录</span></h2><ol>
-<li><a href="#%E5%88%9B%E5%BB%BA-mysql-%E5%AE%B9%E5%99%A8">创建 MySQL 容器</a></li>
-<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93">初始化数据库</a></li>
-<li><a href="#%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE%E5%BA%93">备份数据库</a></li>
-<li><a href="#%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE%E5%BA%93">恢复数据库</a></li>
-<li><a href="#%E5%B8%B8%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">常用注意事项</a></li>
-</ol>
-<hr>
-<h2><span id="创建-mysql-容器">创建 MySQL 容器</span></h2><details>
-<summary>展开/收起</summary>
-
-<h3><span id="拉取-mysql-镜像">拉取 MySQL 镜像</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql:8.0</span><br></pre></td></tr></table></figure>
-<h3><span id="创建并运行容器">创建并运行容器</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">--name my-mysql \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=yourpassword \</span><br><span class="line">-e MYSQL_DATABASE=testdb \</span><br><span class="line">-e MYSQL_USER=testuser \</span><br><span class="line">-e MYSQL_PASSWORD=testpass \</span><br><span class="line">-v /my/local/datadir:/var/lib/mysql \</span><br><span class="line">mysql:8.0</span><br></pre></td></tr></table></figure>
-<p><strong>说明：</strong></p>
-<ul>
-<li><code>--name my-mysql</code>：容器名称。</li>
-<li><code>-p 3306:3306</code>：将容器 MySQL 端口映射到主机 3306。</li>
-<li><code>MYSQL_ROOT_PASSWORD</code>：root 用户密码。</li>
-<li><code>MYSQL_DATABASE</code>：容器启动时初始化创建的数据库。</li>
-<li><code>MYSQL_USER</code> 和 <code>MYSQL_PASSWORD</code>：新建普通用户及密码。</li>
-<li><code>-v /my/local/datadir:/var/lib/mysql</code>：数据卷挂载，保证数据库持久化。</li>
-</ul>
-<h3><span id="查看容器状态">查看容器状态</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-</details>
-
-<hr>
-<h2><span id="初始化数据库">初始化数据库</span></h2><details> <summary>展开/收起</summary>
-
-<h3><span id="进入-mysql-容器">进入 MySQL 容器</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it my-mysql bash</span><br></pre></td></tr></table></figure>
-
-<h3><span id="登录-mysql">登录 MySQL</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
-
-<p>输入 <code>MYSQL_ROOT_PASSWORD</code> 设置的密码，即可登录。</p>
-<h3><span id="创建数据库或用户可选">创建数据库或用户（可选）</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE example_db;</span><br><span class="line">CREATE USER &#x27;example_user&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;example_pass&#x27;;</span><br><span class="line">GRANT ALL PRIVILEGES ON example_db.* TO &#x27;example_user&#x27;@&#x27;%&#x27;;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
-
-</details>
-
-<hr>
-<h2><span id="备份数据库">备份数据库</span></h2><details> <summary>展开/收起</summary>
-### 使用 `docker exec` 备份
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec my-mysql /usr/bin/mysqldump -u root -p testdb &gt; /my/local/backup/testdb.sql</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>testdb</code>：要备份的数据库名。</li>
-<li><code>/my/local/backup/testdb.sql</code>：备份文件路径（主机路径）。</li>
-</ul>
-<h3><span id="使用-docker-exec-结合容器内路径备份">使用 <code>docker exec</code> 结合容器内路径备份</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec my-mysql sh -c &#x27;exec mysqldump -u root -p&quot;$MYSQL_ROOT_PASSWORD&quot; testdb&#x27; &gt; testdb.sql</span><br></pre></td></tr></table></figure>
-</details>
-
-<hr>
-<h2><span id="恢复数据库">恢复数据库</span></h2><details> <summary>展开/收起</summary>
-
-<h3><span id="使用-docker-exec-恢复">使用 <code>docker exec</code> 恢复</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -i my-mysql mysql -u root -p testdb &lt; /my/local/backup/testdb.sql</span><br></pre></td></tr></table></figure>
-
-<h3><span id="示例说明">示例说明</span></h3><ul>
-<li><code>-i</code>：保持标准输入打开，将 SQL 文件传入容器。</li>
-<li><code>testdb</code>：目标数据库名，恢复到这个数据库。</li>
-<li><code>/my/local/backup/testdb.sql</code>：SQL 文件路径。</li>
-</ul>
-<h3><span id="进入容器恢复可选">进入容器恢复（可选）</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it my-mysql bash</span><br><span class="line">mysql -u root -p testdb &lt; /var/lib/mysql/testdb.sql</span><br></pre></td></tr></table></figure>
-
-</details>
-
-<hr>
-<h2><span id="常用注意事项">常用注意事项</span></h2><details> <summary>展开/收起</summary>
-
-<ol>
-<li><strong>持久化数据</strong>：一定要使用 <code>-v /host/path:/var/lib/mysql</code>，否则容器删除后数据也会丢失。</li>
-<li><strong>端口冲突</strong>：宿主机如果已有 MySQL 监听 3306，映射端口需要修改。</li>
-<li><strong>权限问题</strong>：备份恢复时确保文件权限允许 Docker 读取。</li>
-<li><strong>SQL 文件编码</strong>：如果包含中文，确保 SQL 文件是 UTF-8 编码，否则可能出现乱码。</li>
-<li><strong>容器管理</strong>：常用命令：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker stop my-mysql       # 停止容器</span><br><span class="line">docker start my-mysql      # 启动容器</span><br><span class="line">docker restart my-mysql    # 重启容器</span><br><span class="line">docker logs -f my-mysql    # 查看日志</span><br></pre></td></tr></table></figure>
-
-</details>
-      </section>
-
-      
-      
-        <nav class="article-nav">
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2026/04/21/network/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">实施工程师网络排查指南</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2026/04/21/shell1/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">分享几个常用的运维 shell 脚本</h2>
-        </a>
-      
-      <div class="card-text--row">Older</div>
-    </div>
-  </article>
-</div>
-          
-        </nav>
-      
-
-      <section class="page-message-container layout-padding">
         
-
-
-  
-  
-
-  
-  
-
-
       </section>
+
+      
+      
+
+      
+      
     </div>
     <div class="widget-info">
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -301,8 +162,6 @@
     </div>
   </div>
 </section>
-
-      
 
       
 <section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -378,6 +237,7 @@
     </div>
   </article>
 </div>
+
 
     <!-- footer container -->
 <footer id="footer" class="footer">
