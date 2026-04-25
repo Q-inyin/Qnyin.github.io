@@ -25,7 +25,7 @@
 
   
 
-  <title>预处理css | Jon憨憨的博客</title>
+  <title>JSBridge是什么 | Jon憨憨的博客</title>
 
   
 
@@ -98,22 +98,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">预处理css</h1>
+          <h1 class="title-wrap">JSBridge是什么</h1>
           <h2 class="title-sub-wrap">
             <strong>微生翊</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-08-27T15:47:19.000Z" itemprop="datePublished">2022-08-27</time>
+            <time  class="article-date" datetime="2026-04-25T16:38:08.000Z" itemprop="datePublished">2026-04-26</time>
           </h2>
           <ul class="wrap-list dark">
-  
-    <li><a href="/categories/html-css/">📒 html+css</a></li>
   
 </ul>
           <ul class="wrap-list dark">
   
     <li><a href="/tags/%E5%88%86%E4%BA%AB/">🏷️ 分享</a></li>
   
-    <li><a href="/tags/css/">🏷️ css</a></li>
+    <li><a href="/tags/Android/">🏷️ Android</a></li>
   
 </ul>
         </div>
@@ -138,17 +136,115 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h2><span id="css-less">CSS-Less</span></h2><p>Less is a dynamic preprocessor style sheet language that can be compiled into Cascading Style Sheets and run on the client side or server side. Designed by Alexis Sellier, Less is influenced by Sass and has influenced the newer “SCSS” syntax of Sass, which adapted its CSS-like block formatting syntax. –Wikipedia</p>
-<p>Less是一种动态的预处理器样式表语言，可以将其编译成级联样式表并在客户端或服务器端运行。 由Alexis Sellier设计的less受Sass的影响，并影响了SASS的较新的“ SCSS”语法，该语法适用于其CSS式的块格式语法。</p>
-<p><strong>简单地说：less就是简便书写css的工具，还是像写css那样写，只是有些比较简洁，可以写除法、选择器套选择器等等。保存.less文件，就会在同级别下自动生成.css文件。</strong></p>
-<p><strong>Node中使用</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g less</span><br><span class="line">&gt; lessc styles.less styles.css</span><br></pre></td></tr></table></figure>
-<p><strong>游览器中使用</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet/less&quot; type=&quot;text/css&quot; href=&quot;styles.less&quot; /&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/less&quot; &gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+        <h1><span id="jsbridge-是什么webview-通信原理详解">JSBridge 是什么（WebView 通信原理详解）</span></h1><h2><span id="一-概念面试开头一句话">一、概念（面试开头一句话）</span></h2><p><strong>JSBridge 是一种用于 WebView 场景下，实现 H5（JavaScript）与原生（Android &#x2F; iOS &#x2F; RN）双向通信的桥接机制。</strong></p>
+<p>👉 本质：  </p>
+<blockquote>
+<p>把“跨语言调用”封装成类似接口调用（RPC）的通信方式</p>
+</blockquote>
+<hr>
+<h2><span id="二-通俗理解">二、通俗理解</span></h2><p>你可以把 JSBridge 理解为：</p>
+<p>👉 <strong>翻译 + 通信协议</strong></p>
+<ul>
+<li>JS 说：我要调用相机  </li>
+<li>JSBridge：帮你转成原生能听懂的格式  </li>
+<li>原生执行后：再把结果返回给 JS</li>
+</ul>
+<hr>
+<h2><span id="三-为什么需要-jsbridge">三、为什么需要 JSBridge</span></h2><h3><span id="不用-jsbridge混乱写法">❌ 不用 JSBridge（混乱写法）</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">ReactNativeWebView</span>.<span class="title function_">postMessage</span>(<span class="string">&quot;getToken&quot;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">ReactNativeWebView</span>.<span class="title function_">postMessage</span>(<span class="string">&quot;openCamera&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<h2><span id="变量">变量</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x27;@buttonFace&#x27;: &#x27;#5B83AD&#x27;,</span><br><span class="line">&#x27;@buttonText&#x27;: &#x27;#D9EEF2&#x27;</span><br><span class="line"></span><br><span class="line">#header &#123;</span><br><span class="line">  color: @buttonFace;</span><br><span class="line">  background-color: @buttonText;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##结果</span><br><span class="line"></span><br><span class="line">#header &#123;</span><br><span class="line">  color: #5B83AD;</span><br><span class="line">  background-color: #D9EEF2;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="嵌套">嵌套</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#header &#123;</span><br><span class="line">  color: black;</span><br><span class="line">&#125;</span><br><span class="line">#header .navigation &#123;</span><br><span class="line">  font-size: 12px;</span><br><span class="line">&#125;</span><br><span class="line">#header .logo &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##结果</span><br><span class="line"></span><br><span class="line">#header &#123;</span><br><span class="line">  color: black;</span><br><span class="line">  .navigation &#123;</span><br><span class="line">    font-size: 12px;</span><br><span class="line">  &#125;</span><br><span class="line">  .logo &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="映射">映射</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#main &#123;</span><br><span class="line">    @media screen &#123;</span><br><span class="line">        @media (max-width:437px)&#123;</span><br><span class="line">            width:50px;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##结果</span><br><span class="line"></span><br><span class="line">@meida screen and (max-width:437px)&#123;</span><br><span class="line">    main &#123;</span><br><span class="line">        width:50px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="️-使用-jsbridge规范写法">✔️ 使用 JSBridge（规范写法）</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bridge.call(&quot;getToken&quot;).then(token =&gt; &#123;</span><br><span class="line">  console.log(token);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>👉 优点：</p>
+<ul>
+<li>类似调用接口（API）</li>
+<li>支持 Promise</li>
+<li>易维护 &#x2F; 易扩展</li>
+<li>解耦 H5 和原生</li>
+</ul>
+<h2><span id="四-jsbridge-核心结构">四、JSBridge 核心结构</span></h2><h3><span id="1️⃣-js-发起调用">1️⃣ JS 发起调用</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bridge.call(&quot;openCamera&quot;, &#123; quality: 0.8 &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3><span id="2️⃣-统一协议核心">2️⃣ 统一协议（核心）</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;method&quot;: &quot;openCamera&quot;,</span><br><span class="line">  &quot;params&quot;: &#123; &quot;quality&quot;: 0.8 &#125;,</span><br><span class="line">  &quot;callbackId&quot;: &quot;123&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>👉 类似 HTTP 请求结构</p>
+<hr>
+<h3><span id="3️⃣-原生接收并执行">3️⃣ 原生接收并执行</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(method.equals(&quot;openCamera&quot;))&#123;</span><br><span class="line">    // 打开相机</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3><span id="4️⃣-原生返回结果">4️⃣ 原生返回结果</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;callbackId&quot;: &quot;123&quot;,</span><br><span class="line">  &quot;result&quot;: &quot;image_url&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3><span id="5️⃣-js-接收回调">5️⃣ JS 接收回调</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resolve(result);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="五-完整通信流程">五、完整通信流程</span></h2><h3><span id="标准流程面试直接说这个">👉 标准流程（面试直接说这个）</span></h3><ol>
+<li>JS 调用 <code>bridge.call</code></li>
+<li>封装成 JSON（method + params + callbackId）</li>
+<li>通过 WebView 通道发送</li>
+<li>原生解析 method 并执行</li>
+<li>执行完成返回结果</li>
+<li>JS 根据 callbackId 触发回调（resolve）</li>
+</ol>
+<hr>
+<h2><span id="六-底层实现方式">六、底层实现方式</span></h2><h3><span id="android">Android</span></h3><ul>
+<li><code>addJavascriptInterface</code></li>
+<li><code>shouldOverrideUrlLoading</code></li>
+<li><code>evaluateJavascript</code></li>
+</ul>
+<hr>
+<h3><span id="react-native">React Native</span></h3><ul>
+<li><code>window.ReactNativeWebView.postMessage</code></li>
+<li><code>onMessage</code></li>
+</ul>
+<hr>
+<h3><span id="ios">iOS</span></h3><ul>
+<li><code>WKWebView</code></li>
+<li><code>messageHandlers</code></li>
+</ul>
+<hr>
+<h2><span id="七-简单-jsbridge-示例rn版">七、简单 JSBridge 示例（RN版）</span></h2><h3><span id="js-侧">JS 侧</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function call(method, params) &#123;</span><br><span class="line">  return new Promise((resolve) =&gt; &#123;</span><br><span class="line">    const callbackId = Date.now();</span><br><span class="line"></span><br><span class="line">    window.ReactNativeWebView.postMessage(</span><br><span class="line">      JSON.stringify(&#123; method, params, callbackId &#125;)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    window[callbackId] = resolve;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3><span id="rn-侧">RN 侧</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onMessage=&#123;(e) =&gt; &#123;</span><br><span class="line">  const &#123; method, callbackId &#125; = JSON.parse(e.nativeEvent.data);</span><br><span class="line"></span><br><span class="line">  if (method === &quot;getToken&quot;) &#123;</span><br><span class="line">    webview.injectJavaScript(`</span><br><span class="line">      window.$&#123;callbackId&#125;(&quot;abc123&quot;);</span><br><span class="line">    `);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="八-进阶设计加分点">八、进阶设计（加分点）</span></h2><h3><span id="1️⃣-统一协议">1️⃣ 统一协议</span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;method&quot;: &quot;xxx&quot;,</span><br><span class="line">  &quot;params&quot;: &#123;&#125;,</span><br><span class="line">  &quot;callbackId&quot;: &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3><span id="2️⃣-promise-化">2️⃣ Promise 化</span></h3><ul>
+<li>支持 <code>.then()</code></li>
+<li>提升开发体验</li>
+</ul>
+<hr>
+<h3><span id="3️⃣-安全控制">3️⃣ 安全控制</span></h3><ul>
+<li>校验来源 URL</li>
+<li>限制 method 白名单</li>
+<li>防止 JS 注入攻击</li>
+</ul>
+<hr>
+<h2><span id="九-本质总结重点">九、本质总结（重点）</span></h2><p>👉 JSBridge 本质类似：</p>
+<ul>
+<li>RPC（远程调用）</li>
+<li>HTTP API 调用</li>
+</ul>
+<h3><span id="区别">区别：</span></h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP</td>
+<td>跨网络</td>
+</tr>
+<tr>
+<td>JSBridge</td>
+<td>跨运行环境（JS ↔ Native）</td>
+</tr>
+</tbody></table>
+<h2><span id="十-总结">十、总结</span></h2><p>JSBridge 是一种在 WebView 场景中实现 H5 与原生双向通信的桥接机制，本质是对 postMessage 或 addJavascriptInterface 等能力的封装，通过统一的协议（method + params + callbackId）实现类似 RPC 的调用方式，使前端可以像调用接口一样调用原生能力。</p>
+
       </section>
 
       
@@ -160,8 +256,8 @@
     
     <div class="card-text">
       
-        <a href="/2022/11/17/fetch_json/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">fetch() 与 JSON 的碰撞</h2>
+        <a href="/2026/04/26/rn-4/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">rn接入google admob</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -175,8 +271,8 @@
     
     <div class="card-text">
       
-        <a href="/2022/08/25/git-ssl/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">hexo部署ssl证书</h2>
+        <a href="/2026/04/25/rn-2/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">RN注入JS WebView与安卓之间的简单通讯</h2>
         </a>
       
       <div class="card-text--row">Older</div>

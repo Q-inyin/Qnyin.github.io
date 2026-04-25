@@ -25,7 +25,7 @@
 
   
 
-  <title>预处理css | Jon憨憨的博客</title>
+  <title>RN注入JS WebView与安卓之间的简单通讯 | Jon憨憨的博客</title>
 
   
 
@@ -98,22 +98,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">预处理css</h1>
+          <h1 class="title-wrap">RN注入JS WebView与安卓之间的简单通讯</h1>
           <h2 class="title-sub-wrap">
             <strong>微生翊</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-08-27T15:47:19.000Z" itemprop="datePublished">2022-08-27</time>
+            <time  class="article-date" datetime="2026-04-24T16:11:00.000Z" itemprop="datePublished">2026-04-25</time>
           </h2>
           <ul class="wrap-list dark">
-  
-    <li><a href="/categories/html-css/">📒 html+css</a></li>
   
 </ul>
           <ul class="wrap-list dark">
   
     <li><a href="/tags/%E5%88%86%E4%BA%AB/">🏷️ 分享</a></li>
   
-    <li><a href="/tags/css/">🏷️ css</a></li>
+    <li><a href="/tags/Android/">🏷️ Android</a></li>
   
 </ul>
         </div>
@@ -138,17 +136,88 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h2><span id="css-less">CSS-Less</span></h2><p>Less is a dynamic preprocessor style sheet language that can be compiled into Cascading Style Sheets and run on the client side or server side. Designed by Alexis Sellier, Less is influenced by Sass and has influenced the newer “SCSS” syntax of Sass, which adapted its CSS-like block formatting syntax. –Wikipedia</p>
-<p>Less是一种动态的预处理器样式表语言，可以将其编译成级联样式表并在客户端或服务器端运行。 由Alexis Sellier设计的less受Sass的影响，并影响了SASS的较新的“ SCSS”语法，该语法适用于其CSS式的块格式语法。</p>
-<p><strong>简单地说：less就是简便书写css的工具，还是像写css那样写，只是有些比较简洁，可以写除法、选择器套选择器等等。保存.less文件，就会在同级别下自动生成.css文件。</strong></p>
-<p><strong>Node中使用</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g less</span><br><span class="line">&gt; lessc styles.less styles.css</span><br></pre></td></tr></table></figure>
-<p><strong>游览器中使用</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet/less&quot; type=&quot;text/css&quot; href=&quot;styles.less&quot; /&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/less&quot; &gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+        <p><strong>文档查看</strong></p>
+<p><a target="_blank" rel="noopener" href="https://reactnative.cn/docs/0.70/webview">WebView · React Native 中文网</a></p>
+<p><strong>安卓里“注入 JS + WebView 通讯”本质上就是 <strong>让 JavaScript 和 Java 两个运行环境互相调用对方的方法</strong>。可以理解成在网页和原生代码之间搭了一座“桥”（Bridge）。</strong></p>
+<p>在 Android 中，WebView 其实就是一个浏览器内核（基于 Chromium），它运行 JS 引擎，同时也允许 Java 层参与。</p>
+<a href="/2026/04/26/rn-3/" title="JSBridge原理详解">JSBridge原理详解</a>
 
-<h2><span id="变量">变量</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x27;@buttonFace&#x27;: &#x27;#5B83AD&#x27;,</span><br><span class="line">&#x27;@buttonText&#x27;: &#x27;#D9EEF2&#x27;</span><br><span class="line"></span><br><span class="line">#header &#123;</span><br><span class="line">  color: @buttonFace;</span><br><span class="line">  background-color: @buttonText;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##结果</span><br><span class="line"></span><br><span class="line">#header &#123;</span><br><span class="line">  color: #5B83AD;</span><br><span class="line">  background-color: #D9EEF2;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="嵌套">嵌套</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#header &#123;</span><br><span class="line">  color: black;</span><br><span class="line">&#125;</span><br><span class="line">#header .navigation &#123;</span><br><span class="line">  font-size: 12px;</span><br><span class="line">&#125;</span><br><span class="line">#header .logo &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##结果</span><br><span class="line"></span><br><span class="line">#header &#123;</span><br><span class="line">  color: black;</span><br><span class="line">  .navigation &#123;</span><br><span class="line">    font-size: 12px;</span><br><span class="line">  &#125;</span><br><span class="line">  .logo &#123;</span><br><span class="line">    width: 300px;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="映射">映射</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#main &#123;</span><br><span class="line">    @media screen &#123;</span><br><span class="line">        @media (max-width:437px)&#123;</span><br><span class="line">            width:50px;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##结果</span><br><span class="line"></span><br><span class="line">@meida screen and (max-width:437px)&#123;</span><br><span class="line">    main &#123;</span><br><span class="line">        width:50px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通讯的本质就是两件事：</p>
+<h3><span id="1️⃣-js-调用-java">1️⃣ JS 调用 Java</span></h3><p>通过系统提供的接口，把 Java 对象“暴露”给 JS</p>
+<p>👉 JS 可以直接调用 Java 方法</p>
+<hr>
+<h3><span id="2️⃣-java-调用-js">2️⃣ Java 调用 JS</span></h3><p>通过 WebView 执行 JS 字符串代码</p>
+<p>👉 本质是“让浏览器执行一段 JS”</p>
+<h2><span id="evaluatejavascript推荐方法">evaluateJavascript（推荐方法）</span></h2><p>Java 调 JS：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.evaluateJavascript(<span class="string">&quot;javascript:alert(&#x27;hi&#x27;)&quot;</span>, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<p>或获取返回值：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">webView.evaluateJavascript(<span class="string">&quot;javascript:getData()&quot;</span>, value -&gt; &#123;</span><br><span class="line">    <span class="title class_">Log</span>.<span class="title function_">d</span>(<span class="string">&quot;result&quot;</span>, value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3><span id="原理">🔍 原理</span></h3><ul>
+<li>直接调用 Chromium 的 JS 引擎执行代码</li>
+<li>支持回调结果（异步）</li>
+</ul>
+<p>👉 比 <code>loadUrl(&quot;javascript:...&quot;)</code> 更现代</p>
+<hr>
+<h1><span id="三-js-注入方式">三、JS 注入方式</span></h1><h2><span id="1️⃣-页面加载后注入">1️⃣ 页面加载后注入</span></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.evaluateJavascript(<span class="string">&quot;javascript:xxx()&quot;</span>, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="2️⃣-拦截-html-注入">2️⃣ 拦截 HTML 注入</span></h2><p>通过：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">shouldInterceptRequest</span>()</span><br></pre></td></tr></table></figure>
+
+<p>修改 HTML 内容，把 JS 插进去</p>
+<hr>
+<h2><span id="3️⃣-本地-js-文件注入">3️⃣ 本地 JS 文件注入</span></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.<span class="title function_">loadUrl</span>(<span class="string">&quot;file:///android_asset/xxx.js&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3><span id="场景js-调用-android">场景：JS 调用 Android</span></h3><p>1️⃣ 页面加载<br> 2️⃣ Android 注入接口<br> 3️⃣ JS 调用 <code>Android.xxx()</code><br> 4️⃣ WebView 内核：</p>
+<ul>
+<li>JS → C++ → Java（反射）<br> 5️⃣ Java 执行方法</li>
+</ul>
+<hr>
+<h3><span id="场景android-调-js">场景：Android 调 JS</span></h3><p>1️⃣ Java 调用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evaluateJavascript()</span><br></pre></td></tr></table></figure>
+
+<p>2️⃣ WebView 内核执行 JS<br> 3️⃣ JS 返回结果（可选）</p>
+<p><strong>JSBridge 框架</strong></p>
+<p>很多项目不会直接用原生方式，而是封装一层：</p>
+<p>👉 JSBridge</p>
+<p>常见实现思路：</p>
+<ul>
+<li>双向消息队列</li>
+<li>JSON 格式通信</li>
+<li>Promise &#x2F; callback 机制</li>
+</ul>
+<p>流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JS -&gt; 发送 message(JSON)</span><br><span class="line">   -&gt; Android 解析</span><br><span class="line">   -&gt; 执行方法</span><br><span class="line">   -&gt; 回调 JS</span><br></pre></td></tr></table></figure>
+
+<p>👉<br> <strong>Android WebView 通讯本质是通过 addJavascriptInterface 或 URL 拦截等方式，把 Java 方法暴露给 JS，同时通过 evaluateJavascript 执行 JS，实现双向调用，本质是跨语言调用桥接机制。</strong></p>
+<p><strong>rn注入js</strong></p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">WebView</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native-webview&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>根页面</strong></p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; params &#125; = <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">route</span>;</span><br><span class="line">    <span class="keyword">const</span> &#123; habit, webSrc, jsCode &#125; = params;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;takeOver:&quot;</span>, webSrc);</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">WebView</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        // <span class="attr">ref</span>=<span class="string">&#123;this.webviewRef&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">source</span>=<span class="string">&#123;&#123;</span> <span class="attr">uri:</span> <span class="attr">webSrc</span> &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">scalesPageToFit</span>=<span class="string">&#123;false&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">originWhitelist</span>=<span class="string">&#123;[</span>&#x27;*&#x27;]&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onMessage</span>=<span class="string">&#123;this.appafMessage&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">injectedJavaScript</span>=<span class="string">&#123;jsCode&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">mediaPlaybackRequiresUserAction</span>=<span class="string">&#123;true&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">width:</span> <span class="attr">deviceWidth</span>, <span class="attr">height:</span> <span class="attr">deviceHeight</span> &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="h5-rn调用原生postmessage">H5 → RN：调用原生（postMessage）</span></h2><p>H5 页面：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">window.ReactNativeWebView.postMessage(</span><br><span class="line">  JSON.stringify(&#123;</span><br><span class="line">    type: &quot;getToken&quot;</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>RN 端：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;WebView</span><br><span class="line">  onMessage=&#123;(event) =&gt; &#123;</span><br><span class="line">    const data = JSON.parse(event.nativeEvent.data);</span><br><span class="line">    if (data.type === &#x27;getToken&#x27;) &#123;</span><br><span class="line">      console.log(&quot;H5 请求 token&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2><span id="rn-h5回调数据动态注入">RN → H5：回调数据（动态注入）</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">webViewRef.current.injectJavaScript(`</span><br><span class="line">  window.onGetToken(&quot;abc123&quot;);</span><br><span class="line">`);</span><br></pre></td></tr></table></figure>
+
+<p>H5：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.onGetToken = function(token) &#123;</span><br><span class="line">  console.log(&quot;收到 token:&quot;, token);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="完整通信流程">完整通信流程</span></h2><h3><span id="登录态同步流程">✅ 登录态同步流程</span></h3><p> 1️⃣ RN 登录成功拿到 token<br> 2️⃣ WebView 注入 JS（injectedJavaScript）<br> 3️⃣ H5 页面读取 <code>window.APP_TOKEN</code><br> 4️⃣ 完成免登录</p>
+<hr>
+<h3><span id="h5-调用原生能力">✅ H5 调用原生能力</span></h3><p> 1️⃣ H5 调用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postMessage()</span><br></pre></td></tr></table></figure>
+
+<p> 2️⃣ RN <code>onMessage</code> 接收<br> 3️⃣ 根据 type 分发逻辑（类似接口路由）<br> 4️⃣ RN 再通过 <code>injectJavaScript</code> 回调</p>
+
       </section>
 
       
@@ -160,8 +229,8 @@
     
     <div class="card-text">
       
-        <a href="/2022/11/17/fetch_json/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">fetch() 与 JSON 的碰撞</h2>
+        <a href="/2026/04/26/rn-3/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">JSBridge是什么</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -175,8 +244,8 @@
     
     <div class="card-text">
       
-        <a href="/2022/08/25/git-ssl/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">hexo部署ssl证书</h2>
+        <a href="/2026/04/23/rn-1/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">RN杂写</h2>
         </a>
       
       <div class="card-text--row">Older</div>
