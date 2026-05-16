@@ -113,3 +113,17 @@ toc:
   max_depth: 3
   class_name: toc
   include_script: true
+
+markdown:
+  preset: default
+
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    linkify: true
+    typographer: true
+
+  plugins:
+    - markdown-it-anchor
+    - markdown-it-toc-done-right
