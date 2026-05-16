@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <!--latex数学显示公式支持-->
+  
+
+  <meta name="generator" content="Hexo 6.2.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="微生翊">
+  
+
+  
+
+  
+
+  <title>系统部署及维护常用linux命令整理 | Jon憨憨的博客</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.3/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai.css">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/aplayer/dist/APlayer.min.css">
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(/images/wallhaven-q2vo8d.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Jon憨憨的博客
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">系统部署及维护常用linux命令整理</h1>
+          <h2 class="title-sub-wrap">
+            <strong>微生翊</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2026-05-16T11:24:51.000Z" itemprop="datePublished">2026-05-16</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://unpkg.com/aplayer/dist/APlayer.min.css">
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h1 tabindex="-1"><span id="系统部署及维护常用linux命令整理">系统部署及维护常用linux命令整理</span></h1>
+<!-- toc -->
+<ul>
+<li><a href="#%E4%B8%80-%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E7%B1%BB">一、系统命令类</a>
+<ul>
+<li><a href="#1linux-%E6%9F%A5%E7%9C%8B%E6%93%8D%E4%BD%9C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC">1.Linux 查看操作操作系统版本</a></li>
+<li><a href="#2%E5%90%AF%E5%8A%A8%E6%88%96%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99">2.启动或关闭防火墙</a></li>
+<li><a href="#3%E9%85%8D%E7%BD%AEyum%E6%BA%90">3.配置YUM源</a></li>
+<li><a href="#4%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D">4.修改主机名</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-a-idlinux-title2%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%B1%BBa">二、<a id="linux-title2">压缩和解压类</a></a>
+<ul>
+<li><a href="#1gzipgunzip">1.gzip/gunzip</a></li>
+<li><a href="#2zipunzip">2.zip/unzip</a></li>
+<li><a href="#3tar%E5%91%BD%E4%BB%A4">3.tar命令</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-a-idlinux-title3%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BBa">三、<a id="linux-title3">文件目录类</a></a>
+<ul>
+<li><a href="#1pwd%E6%8C%87%E4%BB%A4">1.pwd指令</a></li>
+<li><a href="#2ls%E6%8C%87%E4%BB%A4">2.ls指令</a></li>
+<li><a href="#3cd%E6%8C%87%E4%BB%A4">3.cd指令</a></li>
+<li><a href="#4mkdir%E6%8C%87%E4%BB%A4">4.mkdir指令</a></li>
+<li><a href="#5rmdir%E6%8C%87%E4%BB%A4">5.rmdir指令</a></li>
+<li><a href="#6touch%E6%8C%87%E4%BB%A4">6.touch指令</a></li>
+<li><a href="#7cp%E6%8C%87%E4%BB%A4">7.cp指令</a></li>
+<li><a href="#8rm%E6%8C%87%E4%BB%A4">8.rm指令</a></li>
+<li><a href="#9mv%E6%8C%87%E4%BB%A4">9.mv指令</a></li>
+<li><a href="#10cat%E6%8C%87%E4%BB%A4">10.cat指令</a></li>
+<li><a href="#11more%E6%8C%87%E4%BB%A4">11.more指令</a></li>
+<li><a href="#12less%E6%8C%87%E4%BB%A4">12.less指令</a></li>
+<li><a href="#13echo%E6%8C%87%E4%BB%A4">13.echo指令</a></li>
+<li><a href="#14headtail%E6%8C%87%E4%BB%A4">14.head/tail指令</a></li>
+<li><a href="#15ln%E6%8C%87%E4%BB%A4">15.ln指令</a></li>
+<li><a href="#16history%E6%8C%87%E4%BB%A4">16.history指令</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-a-idlinux-title4%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB-a">四、<a id="linux-title4">时间日期类 </a></a>
+<ul>
+<li><a href="#1date%E6%8C%87%E4%BB%A4">1.date指令</a></li>
+<li><a href="#2cal%E6%8C%87%E4%BB%A4">2.cal指令</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-a-idlinux-title5%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E7%B1%BBa">五、<a id="linux-title5">搜索查找类</a></a>
+<ul>
+<li><a href="#1find%E6%8C%87%E4%BB%A4">1.find指令</a></li>
+<li><a href="#2locate%E6%8C%87%E4%BB%A4">2.locate指令</a></li>
+<li><a href="#3grep%E4%B8%8E">3.grep与|</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD-a-idlinux-title6%E7%BB%84%E7%AE%A1%E7%90%86a">六、<a id="linux-title6">组管理</a></a>
+<ul>
+<li><a href="#1%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%89%80%E6%9C%89%E8%80%85">1.文件/目录所有者</a></li>
+<li><a href="#2%E7%BB%84%E7%9A%84%E5%88%9B%E5%BB%BA">2.组的创建</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%83-a-idlinux-title7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86a">七、<a id="linux-title7">权限管理</a></a>
+<ul>
+<li><a href="#1%E6%9D%83%E9%99%90%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D">1.权限的基本介绍</a></li>
+<li><a href="#2rwx%E6%9D%83%E9%99%90%E8%AF%A6%E8%A7%A3">2.rwx权限详解</a></li>
+<li><a href="#3%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90">3.修改权限</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AB-a-idlinux-title8%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6a">八、<a id="linux-title8">定时任务调度</a></a>
+<ul>
+<li><a href="#1crontab%E5%BE%AA%E7%8E%AF%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">1.crontab循环定时任务</a></li>
+<li><a href="#2%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">2.快速入门</a></li>
+<li><a href="#5%E4%B8%AA%E5%8D%A0%E4%BD%8D%E7%AC%A6%E7%9A%84%E8%AF%B4%E6%98%8E">5个占位符的说明</a></li>
+<li><a href="#%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7%E8%AF%B4%E6%98%8E">特殊符号说明</a></li>
+<li><a href="#3%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B">3.应用案例</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1 tabindex="-1"><span id="一-系统命令类">一、系统命令类</span></h1>
+<h2 tabindex="-1"><span id="1linux-查看操作操作系统版本">1.Linux 查看操作操作系统版本</span></h2>
+<p><code>cat /etc/redhat-release</code></p>
+<h2 tabindex="-1"><span id="2启动或关闭防火墙">2.启动或关闭防火墙</span></h2>
+<p>①Centos6启动或关闭防火墙及及开放指定端口</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>开启</th>
+<th>关闭</th>
+<th>状态</th>
+<th>开放端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centos6</td>
+<td>service iptables start</td>
+<td>service iptables stop</td>
+<td>service iptables status</td>
+<td>firewall-cmd --zone=public --add-port=端口/tcp --permanentfirewall-cmd --reload</td>
+</tr>
+<tr>
+<td>Centos7</td>
+<td>systemctl start firewalld</td>
+<td>systemctl stop firewalld</td>
+<td>systemctl status firewalld</td>
+<td>firewall-cmd --zone=public --add-port=端口/tcp --permanentfirewall-cmd --reload</td>
+</tr>
+</tbody>
+</table>
+<p>②部署系统时需要关闭selinux,关闭selinux方法</p>
+<p><code>vim /etc/selinux/config，将selinux的值改为disabled如下图：</code></p>
+<h2 tabindex="-1"><span id="3配置yum源">3.配置YUM源</span></h2>
+<p>①删除默认yum源配置文件</p>
+<p>cd /etc/yum.repos.d<br>
+rm -rf *</p>
+<p>②挂载本地yum源镜像（需将镜像文件放置到opt目录下）<br>
+cd /opt<br>
+mount  -t  iso9660  -o  loop  CentOS-7.9-x86_64-DVD-2009.iso  /mnt</p>
+<p>③新建yum源配置文件并设好默认参数</p>
+<p><strong>vim  /etc/yum.repos.d/luocs.repo</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Server]</span><br><span class="line">name=Server</span><br><span class="line">baseurl=file:///mnt/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line">Type your information message here.</span><br></pre></td></tr></table></figure>
+<p>④检查yum源<br>
+yum list</p>
+<h2 tabindex="-1"><span id="4修改主机名">4.修改主机名</span></h2>
+<p>vim /etc/hosts<br>
+在最后一行添加，IP地址与主机名的映射，如下图：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">									关于主机名的小贴士</span><br><span class="line"></span><br><span class="line">修改主机名</span><br><span class="line"></span><br><span class="line">hostnamectl set-hostname 主机名</span><br><span class="line"></span><br><span class="line">查看主机名</span><br><span class="line"></span><br><span class="line">hostname</span><br></pre></td></tr></table></figure>
+<h1 tabindex="-1"><span id="二-压缩和解压类">二、</span></h1>
+<h2 tabindex="-1"><span id="1gzipgunzip">1.gzip/gunzip</span></h2>
+<p>gzip命令用来压缩文件。gzip是个使用广泛的压缩程序，文件经它压缩过后，其名称后面会多处“.gz”扩展名。<br>
+gunzip命令用来解压缩文件。gunzip是个使用广泛的解压缩程序，它用于解开被<a target="_blank" rel="noopener" href="http://man.linuxde.net/gzip">gzip</a>压缩过的文件，这些压缩文件预设最后的扩展名为.gz。<br>
+gzip 文件<br>
+gunzip 文件</p>
+<h2 tabindex="-1"><span id="2zipunzip">2.zip/unzip</span></h2>
+<p>zip [选项] xxx.zip 将要压缩的内容<br>
+unzip [选项] xxx.zip<br>
+常用选项</p>
+<ul>
+<li>zip -r 递归压缩，压缩目录</li>
+<li>unzip -d &lt;目录&gt; 指定解压后文件的存放目录</li>
+</ul>
+<h2 tabindex="-1"><span id="3tar命令">3.tar命令</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-c</td>
+<td style="text-align:left">产生.tar打包文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-v</td>
+<td style="text-align:left">显示详细信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-f</td>
+<td style="text-align:left">指定压缩后的文件名</td>
+</tr>
+<tr>
+<td style="text-align:left">-z</td>
+<td style="text-align:left">打包同时压缩</td>
+</tr>
+<tr>
+<td style="text-align:left">-x</td>
+<td style="text-align:left">解包.tar文件</td>
+</tr>
+</tbody>
+</table>
+<p>常用打包解压命令<br>
+解压到当前目录：tar -zxvf xxx.tar.gz<br>
+解压到指定目录：tar -zxvf xxx.tar.gz -C 【指定目录】<br>
+打包：<br>
+tar -zcvf xxx.tar.gz 【打包的内容】<br>
+tar -cvf xxx.tar 【打包的内容】</p>
+<h1 tabindex="-1"><span id="三-文件目录类">三、</span></h1>
+<h2 tabindex="-1"><span id="1pwd指令">1.pwd指令</span></h2>
+<p>显示当前工作目录的绝对路径</p>
+<h2 tabindex="-1"><span id="2ls指令">2.ls指令</span></h2>
+<p>查看当前目录的所有内容信息<br>
+ls [选项] [目录或文件]<br>
+常用选项<br>
+-a:显示当前目录所有的文件和目录，包含隐藏的<br>
+-l:以列表的方式显示信息</p>
+<h2 tabindex="-1"><span id="3cd指令">3.cd指令</span></h2>
+<p>切换到指定目录<br>
+cd  【文件路径】<br>
+特殊<br>
+cd ~或cd:回到当前用户的家目录<br>
+cd …:回到上一级目录</p>
+<h2 tabindex="-1"><span id="4mkdir指令">4.mkdir指令</span></h2>
+<p>创建目录<br>
+mkdir [选项] 要创建的目录<br>
+常用选项<br>
+-p创建多级目录</p>
+<h2 tabindex="-1"><span id="5rmdir指令">5.rmdir指令</span></h2>
+<p>删除空目录<br>
+rmdir [选项] 要删除的空目录<br>
+使用细节<br>
+rmdir删除的是空目录，要求这个目录下没有子文件也没有文件夹<br>
+如果需要删除非空目录，需要使用rm -rf 要删除的目录<br>
+例如rm -rf /home/animal</p>
+<h2 tabindex="-1"><span id="6touch指令">6.touch指令</span></h2>
+<p>创建文件<br>
+touch 文件名称</p>
+<h2 tabindex="-1"><span id="7cp指令">7.cp指令</span></h2>
+<p>拷贝文件到指定目录<br>
+cp [选项] source dest<br>
+常用选项<br>
+-r递归复制整个文件夹<br>
+使用细节<br>
+使用\cp强制覆盖不提示</p>
+<h2 tabindex="-1"><span id="8rm指令">8.rm指令</span></h2>
+<p>删除文件或目录<br>
+rm [选项] 要删除的文件或目录<br>
+常用选项<br>
+-r递归删除<br>
+-f强制删除</p>
+<h2 tabindex="-1"><span id="9mv指令">9.mv指令</span></h2>
+<p>移动文件与目录 或重命名<br>
+mv oldFileName newFileName (重命名)<br>
+mv 【文件】【指定目录】 (移动文件)</p>
+<h2 tabindex="-1"><span id="10cat指令">10.cat指令</span></h2>
+<p>查看文件内容<br>
+cat [选项] 要查看的文件<br>
+常用选项<br>
+-n显示行号<br>
+使用细节<br>
+cat只能浏览文件，而不能修改文件</p>
+<h2 tabindex="-1"><span id="11more指令">11.more指令</span></h2>
+<p>一个基于VI编辑器的文本过滤器<br>
+more 要查看的文件<br>
+操作	功能说明<br>
+space（空格）	向下翻一页<br>
+enter（回车）	向下翻一行<br>
+q	立刻离开<br>
+ctrl+f	向下滚动一个屏<br>
+ctrl+b	返回上一屏</p>
+<h2 tabindex="-1"><span id="12less指令">12.less指令</span></h2>
+<p>less 要查看的文件<br>
+操作	功能说明<br>
+space	向下翻一页<br>
+[pagedown]	向下翻一页<br>
+[pageup]	向上翻一页<br>
+/字串	向下搜寻[字串]；n：向下查找，N：向上查找<br>
+?字串	向上搜寻[字串]；n：向上查找，N：向下查找<br>
+q	立刻离开</p>
+<h2 tabindex="-1"><span id="13echo指令">13.echo指令</span></h2>
+<p>输出内容到控制台<br>
+案例<br>
+echo $PATH输出环境变量<br>
+echo $HOSTNAME输出主机名</p>
+<h2 tabindex="-1"><span id="14headtail指令">14.head/tail指令</span></h2>
+<p>显示文件开头/结尾的部分内容，默认前10行<br>
+head 文件名<br>
+head -n 5 文件名   【显示前5行】<br>
+tail 文件名<br>
+tail -n 5 文件名 【显示后5行】<br>
+tail -f 文件名 实时监控文件追加的内容</p>
+<h2 tabindex="-1"><span id="15ln指令">15.ln指令</span></h2>
+<p>软链接，存放其他文件的路径 ln-&gt;link<br>
+ln -s [原文件或目录] [软连接名] (给文件创造一个软连接)<br>
+unlink 软连接名 (删除软连接)<br>
+启动软链接的服务：/etc/init.d/链接名 start<br>
+关闭软链接的服务：/etc/init.d/软链接名 stop</p>
+<h2 tabindex="-1"><span id="16history指令">16.history指令</span></h2>
+<p>查看已经执行的命令，也可以执行某个历史命令<br>
+history (显示所有历史命令)<br>
+history 10 (显示近期10个历史命令)<br>
+!10 执行历史中第10条命令</p>
+<h1 tabindex="-1"><span id="四-时间日期类">四、</span></h1>
+<h2 tabindex="-1"><span id="1date指令">1.date指令</span></h2>
+<p>①显示当前日期<br>
+date 显示年、月、日、时、分、秒、及周几<br>
+date +%Y  显示年份<br>
+date +%m  显示月份<br>
+date +%d  显示一个月中第几天<br>
+date “+%Y-%m-%d %H:%M:%S”  显示年、月、日、时、分、秒<br>
+②设置日期<br>
+date -s 字符串时间<br>
+示例：<br>
+date -s 2023-02-03 20:02:10</p>
+<h2 tabindex="-1"><span id="2cal指令">2.cal指令</span></h2>
+<p>查看日历<br>
+案例</p>
+<ul>
+<li>cal显示当前日历</li>
+<li>cal 2023   显示2023年日历</li>
+</ul>
+<h1 tabindex="-1"><span id="五-搜索查找类">五、</span></h1>
+<h2 tabindex="-1"><span id="1find指令">1.find指令</span></h2>
+<p>从指定目录向下递归地遍历其各个子目录并显示<br>
+find [搜索范围] [选项]</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-name</td>
+<td style="text-align:left">按照指定文件名查找模式</td>
+</tr>
+<tr>
+<td style="text-align:left">-user</td>
+<td style="text-align:left">查找属于指定用户的文件</td>
+</tr>
+<tr>
+<td style="text-align:left">-size</td>
+<td style="text-align:left">按指定大小查找(单位可以是M,G,k)</td>
+</tr>
+<tr>
+<td style="text-align:left">案例</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">find /home -name *.java 在/home目录下查找java文件</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">find /opt -user easytong 在/opt目录下查找属于easytong的文件</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">find / -size +200M查找整个linux系统下大于200M的文件</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">+n大于n，-n小于n，n等于n</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>常用指令：</strong></p>
+<p>find /opt/test -name ‘*.sh’ -exec chmod +x {} ; 将test目录下所有的.sh文件添加可执行权限</p>
+<h2 tabindex="-1"><span id="2locate指令">2.locate指令</span></h2>
+<p>快速定位文件路径，使用前需要执行updatedb</p>
+<p>updatedb (locate基于数据库查询，必须定期更新)</p>
+<p>locate 文件名</p>
+<h2 tabindex="-1"><span id="3grep与">3.grep与|</span></h2>
+<p>grep过滤查找，|表示将前一个命令的结果传递给后面的命令处理</p>
+<p>示例：查询系统中在运行的java进程</p>
+<p>ps -ef | grep java</p>
+<h1 tabindex="-1"><span id="六-组管理">六、</span></h1>
+<p>在linux中的每个用户必须属于一个组，不能独立于组外。</p>
+<p>在linux中每个文件都有所有者，所在组，其他组的概念。</p>
+<h2 tabindex="-1"><span id="1文件目录所有者">1.文件/目录所有者</span></h2>
+<ul>
+<li>查看文件所有者<br>
+ls -ahl</li>
+<li>修改文件所有者(单独修改文件所有者，不会影响其所在组)<br>
+chown 用户名 文件名<br>
+参数 -R 递归执行</li>
+<li>修改文件所在组<br>
+chgrp 组名 文件名<br>
+参数 -R 递归执行</li>
+</ul>
+<p>chown newowner 文件/目录 (改变所有者)</p>
+<p>chown newowner:newgroup 文件/目录 (改变所有者和所在组)</p>
+<p>参数 -R:如果是目录，则递归生效</p>
+<h2 tabindex="-1"><span id="2组的创建">2.组的创建</span></h2>
+<ul>
+<li>创建组<br>
+groupadd easytong</li>
+<li>创建一个用户并指定组<br>
+useradd -g easytong tom</li>
+</ul>
+<h1 tabindex="-1"><span id="七-权限管理">七、</span></h1>
+<h2 tabindex="-1"><span id="1权限的基本介绍">1.权限的基本介绍</span></h2>
+<p>drwxr-xr-x 说明</p>
+<ul>
+<li>第0位 文件类型
+<ul>
+<li>l是链接</li>
+<li>d是目录</li>
+<li>c是字符设备文件，如鼠标/键盘</li>
+<li>b是块设备，如硬盘</li>
+<li>- 是文件</li>
+</ul>
+</li>
+<li>第1~3位 文件所有者的权限</li>
+<li>第4~6位 同组用户的权限</li>
+<li>第7~9位 其他组用户的权限</li>
+</ul>
+<h2 tabindex="-1"><span id="2rwx权限详解">2.rwx权限详解</span></h2>
+<ul>
+<li>rwx作用于文件
+<ul>
+<li>r代表可读</li>
+<li>w代表可写<br>
+(不代表可删除，可删除文件的前提是对此文件所在目录具有写权限)</li>
+<li>x代表可执行</li>
+</ul>
+</li>
+<li>rwx作用于目录
+<ul>
+<li>r代表可读，可以使用ls查看目录内容</li>
+<li>w代表可写，可以修改。可在目录内创建+删除+重命名目录</li>
+<li>x代表可执行，即可以进入该目录</li>
+</ul>
+</li>
+</ul>
+<p>可以用数字表示；r=4,w=2,x=1；rwx=4+2+1=7</p>
+<h2 tabindex="-1"><span id="3修改权限">3.修改权限</span></h2>
+<p>chmod(全称:change mode);控制用户对文件的权限的命令<br>
+①+、-、=变更权限<br>
+u所有者;g所有组;o其他人;a所有人(即u+g+o)<br>
+chmod u=rwx,g=rx,o=x 文件/目录<br>
+chmod o+w 文件/目录<br>
+chmod a-x 文件/目录<br>
+②通过数字变更权限<br>
+r=4 w=2 x=1<br>
+chmod u=rwx,g=rx,o=x 文件/目录相当于chmod 751 文件/目录<br>
+示例：<br>
+将/home/abc.txt文件的权限修改成rwxr-xr-x<br>
+chmod 755 /home/abc.txt</p>
+<h1 tabindex="-1"><span id="八-定时任务调度">八、</span></h1>
+<h2 tabindex="-1"><span id="1crontab循环定时任务">1.crontab循环定时任务</span></h2>
+<p>crontab 进行定时任务的设置</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-e</td>
+<td style="text-align:left">编辑crontab定时任务</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">查询crontab定时任务</td>
+</tr>
+<tr>
+<td style="text-align:left">service crond restart 重启任务调度</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 tabindex="-1"><span id="2快速入门">2.快速入门</span></h2>
+<p>设置任务调度文件:/etc/crontab<br>
+案例：每小时每分钟执行一次 ls -l /etc/ &gt; /tmp/to.txt</p>
+<ol>
+<li>crontab -e</li>
+<li>*/1 * * * * ls -l /etc/ -&gt; /tmp/to.txt</li>
+</ol>
+<h2 tabindex="-1"><span id="5个占位符的说明">5个占位符的说明</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">第一个*</td>
+<td style="text-align:left">一小时中的第几分钟</td>
+</tr>
+<tr>
+<td style="text-align:left">第二个*</td>
+<td style="text-align:left">一天中的第几小时</td>
+</tr>
+<tr>
+<td style="text-align:left">第三个*</td>
+<td style="text-align:left">一个月的第几天</td>
+</tr>
+<tr>
+<td style="text-align:left">第四个*</td>
+<td style="text-align:left">一年中的第几月</td>
+</tr>
+<tr>
+<td style="text-align:left">第五个*</td>
+<td style="text-align:left">一周中的星期几 (0,7都代表周日)</td>
+</tr>
+</tbody>
+</table>
+<h2 tabindex="-1"><span id="特殊符号说明">特殊符号说明</span></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特殊符号</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">代表任何时间，如第一个*代表一小时中的每一分钟</td>
+</tr>
+<tr>
+<td style="text-align:left">,</td>
+<td style="text-align:left">代表不连续的时间，如0 8,12,16 * * *代表每天的8:00,12:00,16:00执行一次</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">代表连续的时间范围，如0 5 * * 1-6代表周一到周六的5:00执行一次</td>
+</tr>
+<tr>
+<td style="text-align:left">*/n</td>
+<td style="text-align:left">代表每隔多久执行一次，如*/10 * * * *代表每10分钟执行一次</td>
+</tr>
+</tbody>
+</table>
+<h2 tabindex="-1"><span id="3应用案例">3.应用案例</span></h2>
+<ol>
+<li>每隔1分钟，将当前的日期信息追加到/tmp/mydate中<br>
+*/1 * * * * date &gt;&gt; /tmp/mydate/</li>
+<li>每隔1分钟，将当前日期和日历都追加到/tmp/mycal中<br>
+①vim /home/my.sh写入date &gt;&gt; /tmp/mycal和cal &gt;&gt; /tmp/mycal<br>
+②chmod u+x /tmp/my.sh给my.sh增加执行权限<br>
+③crontab -e并写入*/1 * * * * /home/my.sh<br>
+3.每天2:00将mysql数据库testdb备份到文件中<br>
+0 2 * * * mysqldump -u root -p root testdb &gt; /home/db.bak</li>
+</ol>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2026/05/16/Linux2/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">linux常用命令总结</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2026/04/26/rn-4/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">rn接入google admob</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="/images/avatar.jpeg" class="soft-size--round soft-style--box" alt="微生翊">
+    
+    
+      <h2>微生翊</h2>
+    
+    
+      <p>每一本打开的书，都是漫漫长夜。</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>25</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        5
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        10
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>可惜我文本平平</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/JavaScript/">
+            JavaScript (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/IT/">
+            IT (2)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Githube/">
+            Githube (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/html-css/">
+            html+css (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Githube/hexo/">
+            hexo (2)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Android/" style="font-size: 18px;" class="tags-cloud-8">Android</a> <a href="/tags/Centos/" style="font-size: 12px;" class="tags-cloud-2">Centos</a> <a href="/tags/css/" style="font-size: 10px;" class="tags-cloud-0">css</a> <a href="/tags/js/" style="font-size: 16px;" class="tags-cloud-6">js</a> <a href="/tags/%E5%88%86%E4%BA%AB/" style="font-size: 20px;" class="tags-cloud-10">分享</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 14px;" class="tags-cloud-4">博客</a> <a href="/tags/%E5%AE%9E%E6%96%BD/" style="font-size: 16px;" class="tags-cloud-6">实施</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 12px;" class="tags-cloud-2">数据库</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;" class="tags-cloud-0">数组</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 14px;" class="tags-cloud-4">运维</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/Q-inyin" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/@yingqin85883849" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2026 <a href="/" target="_blank">微生翊</a></p>
+
+    
+      <p><a href="https://beian.miit.gov.cn" target="_blank">湘ICP备2021019859号</a></p>
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+	
+	<div>
+	<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+	<script>
+	    var now = new Date();
+	    function createtime() {
+	        var grt= new Date("08/11/2022 00:00:00");
+	        now.setTime(now.getTime()+250);
+	        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+	        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+	        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+	        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+	        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+	        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+	        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+	        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+	    }
+	setInterval("createtime()",250);
+	</script>
+	</div>
+	
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+  <script src="https://unpkg.com/aplayer/dist/APlayer.min.js"></script>
+</body>
+</html>

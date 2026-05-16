@@ -138,91 +138,106 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1><span id="hexo的安装及博客的部署">hexo的安装及博客的部署</span></h1><h2><span id="安装node">安装Node</span></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node官网 https://nodejs.org/en/</span><br></pre></td></tr></table></figure>
-
+        <h1 tabindex="-1"><span id="hexo的安装及博客的部署">hexo的安装及博客的部署</span></h1>
+<h2 tabindex="-1"><span id="安装node">安装Node</span></h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Node官网 https://nodejs.org/en/</span><br></pre></td></tr></table></figure>
 <p><strong>下载Windows带有版本号的LTS版</strong></p>
 <ul>
-<li><p>配置安装路径一直到底安装即可</p>
+<li>
+<p>配置安装路径一直到底安装即可</p>
 </li>
-<li><p>检查是否安装成功，返回版本号成功</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##cmd输入</span><br><span class="line"></span><br><span class="line">node -v </span><br><span class="line"></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></li>
+<li>
+<p>检查是否安装成功，返回版本号成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##cmd输入</span><br><span class="line"></span><br><span class="line">node -v </span><br><span class="line"></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2><span id="安装hexo">安装hexo</span></h2><p><strong>按win+r弹出的框输入cmd回车弹出命令提示符,输入以下指令回车。</strong></p>
+<h2 tabindex="-1"><span id="安装hexo">安装hexo</span></h2>
+<p><strong>按win+r弹出的框输入cmd回车弹出命令提示符,输入以下指令回车。</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">cnpm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
 <p><strong>CMD命令  盘符号:进入想要存放博客文件的盘符，我这里是D盘以D盘为例D: ,cd:文件名</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
 <p><strong>等待完成。完成提示</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start blogging with Hexo!</span><br></pre></td></tr></table></figure>
-
 <p><strong>这样博客就搭好了，文件储存在你创建的文件下</strong></p>
-<h2><span id="安装git">安装Git</span></h2><h4><span id="这里转载了csdn博主的文章"><font color="red" face="黑体">这里转载了CSDN博主的文章</font></span></h4><h4><span id="git-详细安装教程详解-git-安装过程的每一个步骤_mukes的博客-csdn博客_git安装"></span></h4><p><em><strong><code>本文发布于 2021-4-17，发布后访问量噌噌地涨，评论区一片好评，都是一群爱学习的好同学啊（重点表扬发现彩蛋的同学），现距发布时间快一年了，更新一下新版本，毕竟没有人喜欢过时的东西</code></strong></em></p>
+<h2 tabindex="-1"><span id="安装git">安装Git</span></h2>
+<h4 tabindex="-1"><span id="这里转载了csdn博主的文章"><font color="red" face="黑体">这里转载了CSDN博主的文章</font></span></h4>
+<h4 tabindex="-1"><span id="git-详细安装教程详解-git-安装过程的每一个步骤_mukes的博客-csdn博客_git安装"></span></h4>
+<p><em><strong><code>本文发布于 2021-4-17，发布后访问量噌噌地涨，评论区一片好评，都是一群爱学习的好同学啊（重点表扬发现彩蛋的同学），现距发布时间快一年了，更新一下新版本，毕竟没有人喜欢过时的东西</code></strong></em></p>
 <p><strong>查看配置</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 查看自己设置的配置</span><br><span class="line"></span><br><span class="line">git config --list </span><br></pre></td></tr></table></figure>
-
 <p><strong>查看用户信息</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查看用户名 ：git config user.name</span><br><span class="line"></span><br><span class="line">查看密码： git config user.password</span><br><span class="line"></span><br><span class="line">查看邮箱：git config user.email</span><br></pre></td></tr></table></figure>
-
 <p><strong>查看设置信息（全局配置</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;xxxx名称&quot;</span><br><span class="line">git config --global user.email &quot;xxxx.com邮箱&quot;</span><br><span class="line">git config --global user.password &quot;xxxxx密码&quot;</span><br></pre></td></tr></table></figure>
-
 <p><strong>SSH密钥（配置服务器的git和本地提交需要用到</strong></p>
-<p>打开Git Bash，生成SSH密钥 </p>
+<p>打开Git Bash，生成SSH密钥</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;emailAddress&quot;</span><br></pre></td></tr></table></figure>
-
-<p>  获取 并配置公钥</p>
+<p>获取 并配置公钥</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub </span><br></pre></td></tr></table></figure>
-
 <p>将显示的所有文字复制，然后在Github Settings&gt;SSH keys里面进行配置</p>
-<p>  <strong>Token管理</strong></p>
+<p><strong>Token管理</strong></p>
 <ol>
 <li>Github Settings &gt; Developer settings里面生成Token</li>
 </ol>
-<p>  网页刷新后，token会消失，所以要及时保存</p>
+<p>网页刷新后，token会消失，所以要及时保存</p>
 <ol start="2">
-<li><p>控制面板&gt;用户账户&gt;凭据管理器&gt;Windows凭据&gt;普通凭据</p>
+<li>
+<p>控制面板&gt;用户账户&gt;凭据管理器&gt;Windows凭据&gt;普通凭据</p>
 <p>添加普通凭据</p>
 </li>
 </ol>
-<p>  <strong>可能遇到的问题</strong></p>
-<p>  直接进行修改</p>
-<p>   $ git remote set-url origin [对应SSH&#x2F;HTTPS仓库地址]</p>
-<p>  先删除，然后添加</p>
-<p>   $ git remote rm origin<br>   $ git remote add origin [对应SSH&#x2F;HTTPS仓库地址]</p>
-<p>  修改项目下的.git&#x2F;config里面 remote里面的url</p>
-<h2><span id="hexo主题配置">hexo主题配置</span></h2><ol>
-<li><p>在hexo官网下载合适的主题</p>
+<p><strong>可能遇到的问题</strong></p>
+<p>直接进行修改</p>
+<p>$ git remote set-url origin [对应SSH/HTTPS仓库地址]</p>
+<p>先删除，然后添加</p>
+<p>$ git remote rm origin<br>
+$ git remote add origin [对应SSH/HTTPS仓库地址]</p>
+<p>修改项目下的.git/config里面 remote里面的url</p>
+<h2 tabindex="-1"><span id="hexo主题配置">hexo主题配置</span></h2>
+<ol>
+<li>
+<p>在hexo官网下载合适的主题</p>
 </li>
-<li><p>从GitHub下载主题并将其添加到网站目录: themes</p>
+<li>
+<p>从GitHub下载主题并将其添加到网站目录: themes</p>
 </li>
-<li><p>本地博客文件夹下找到themes文件夹（这是博客的主题文件   ，解压文件</p>
+<li>
+<p>本地博客文件夹下找到themes文件夹（这是博客的主题文件   ，解压文件</p>
 </li>
-<li><p>编辑博客的配置文件<code>_config.yml</code>文件找到<strong>theme</strong>并设置值为&#96;下载主题文件的名称&#96;&#96;</p>
+<li>
+<p>编辑博客的配置文件<code>_config.yml</code>文件找到<strong>theme</strong>并设置值为`下载主题文件的名称``</p>
 </li>
-<li><p>&#96;&#96;进入<code>themes/flex-block</code>编辑主题文件<code>_config.yml</code>以配置你的站点信息</p>
+<li>
+<p>``进入<code>themes/flex-block</code>编辑主题文件<code>_config.yml</code>以配置你的站点信息</p>
 </li>
 </ol>
-<h3><span id="configyml分为本地博客配置和主题文件配置"><font color="red" face="黑体">config.yml分为本地博客配置和主题文件配置*</font></span></h3><p>  <strong>hexo基本命令</strong> cmd命令下启动</p>
+<h3 tabindex="-1"><span id="configyml分为本地博客配置和主题文件配置"><font color="red" face="黑体">config.yml分为本地博客配置和主题文件配置*</font></span></h3>
+<p><strong>hexo基本命令</strong> cmd命令下启动</p>
 <ul>
-<li><p>hexo clean 清除博客配置信息</p>
+<li>
+<p>hexo clean 清除博客配置信息</p>
 </li>
-<li><p>hexo g -d 配置博客信息</p>
+<li>
+<p>hexo g -d 配置博客信息</p>
 </li>
-<li><p>hexo s 启动博客</p>
+<li>
+<p>hexo s 启动博客</p>
 </li>
 </ul>
-<p>  <strong>cmd命令提示符，且需要保证在你自己建立的文件夹路径下，我在blog文件夹。</strong></p>
-<p>  输入</p>
+<p><strong>cmd命令提示符，且需要保证在你自己建立的文件夹路径下，我在blog文件夹。</strong></p>
+<p>输入</p>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>  提示</p>
+<p>提示</p>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INFO  Validating config</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</span><br><span class="line"></span><br><span class="line">##访问链接:  http://localhost:4000 </span><br></pre></td></tr></table></figure>
-<h4><span id="打开博客配置文件_configyml这个文件">打开博客配置文件_config.yml这个文件</span></h4><p>  找到最下面，修改成</p>
+<h4 tabindex="-1"><span id="打开博客配置文件_configyml这个文件">打开博客配置文件_config.yml这个文件</span></h4>
+<p>找到最下面，修改成</p>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@你需要的链接地址GitHub或者git,阿里云</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<h5><span id="安装hexo插件hexo-deployer-git">安装hexo插件hexo-deployer-git</span></h5>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>  hexo clean  ##第一个是生成本地静态文件</p>
-<p>  hexo g -d ##第二个是发送到托管库（你链接的地址</p>
-<h2><span id="博客主题的安装及修改">博客主题的安装及修改</span></h2><p>  打开<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">hexo官网</a></p>
+<h5 tabindex="-1"><span id="安装hexo插件hexo-deployer-git">安装hexo插件hexo-deployer-git</span></h5>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>hexo clean  ##第一个是生成本地静态文件</p>
+<p>hexo g -d ##第二个是发送到托管库（你链接的地址</p>
+<h2 tabindex="-1"><span id="博客主题的安装及修改">博客主题的安装及修改</span></h2>
+<p>打开<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">hexo官网</a></p>
 
       </section>
 
@@ -295,7 +310,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>23</span>
+        <span>25</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -358,14 +373,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/Githube/hexo/">
-            hexo (2)
+          <a href="/categories/html-css/">
+            html+css (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/html-css/">
-            html+css (1)
+          <a href="/categories/Githube/hexo/">
+            hexo (2)
           </a>
         </li>
       

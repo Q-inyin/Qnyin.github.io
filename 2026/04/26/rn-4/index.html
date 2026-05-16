@@ -136,9 +136,12 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1><span id="一-admob-是什么">一、AdMob 是什么</span></h1><p>👉<br> <strong>AdMob 是 Google 提供的移动广告平台，用来在 App 中展示广告并获得收入。</strong></p>
+        <h1 tabindex="-1"><span id="一-admob-是什么">一、AdMob 是什么</span></h1>
+<p>👉<br>
+<strong>AdMob 是 Google 提供的移动广告平台，用来在 App 中展示广告并获得收入。</strong></p>
 <hr>
-<h1><span id="二-它是干嘛的">二、它是干嘛的</span></h1><p>你开发了一个 App，比如：</p>
+<h1 tabindex="-1"><span id="二-它是干嘛的">二、它是干嘛的</span></h1>
+<p>你开发了一个 App，比如：</p>
 <ul>
 <li>工具类 App</li>
 <li>游戏</li>
@@ -149,80 +152,101 @@
 <ul>
 <li>用户打开 App</li>
 <li>看到广告</li>
-<li>点击 &#x2F; 展示</li>
+<li>点击 / 展示</li>
 <li>你赚钱 💰</li>
 </ul>
 <hr>
-<h1><span id="三-admob-的工作原理">三、AdMob 的工作原理</span></h1><p>可以理解成一个“广告中介平台”：</p>
+<h1 tabindex="-1"><span id="三-admob-的工作原理">三、AdMob 的工作原理</span></h1>
+<p>可以理解成一个“广告中介平台”：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">广告主 → AdMob → 你的 App → 用户</span><br></pre></td></tr></table></figure>
-
 <hr>
-<h2><span id="详细流程">🔁 详细流程</span></h2><p>1️⃣ 广告主在 Google 投广告<br> 2️⃣ AdMob 管理广告资源<br> 3️⃣ 你的 App 请求广告<br> 4️⃣ AdMob 返回广告内容<br> 5️⃣ 用户看到广告（展示 &#x2F; 点击）<br> 6️⃣ 你获得收益</p>
+<h2 tabindex="-1"><span id="详细流程">🔁 详细流程</span></h2>
+<p>1️⃣ 广告主在 Google 投广告<br>
+2️⃣ AdMob 管理广告资源<br>
+3️⃣ 你的 App 请求广告<br>
+4️⃣ AdMob 返回广告内容<br>
+5️⃣ 用户看到广告（展示 / 点击）<br>
+6️⃣ 你获得收益</p>
 <hr>
-<h1><span id="四-常见广告类型">四、常见广告类型</span></h1><h2><span id="1️⃣-banner横幅广告">1️⃣ Banner（横幅广告）</span></h2><ul>
-<li>页面底部&#x2F;顶部一条</li>
+<h1 tabindex="-1"><span id="四-常见广告类型">四、常见广告类型</span></h1>
+<h2 tabindex="-1"><span id="1️⃣-banner横幅广告">1️⃣ Banner（横幅广告）</span></h2>
+<ul>
+<li>页面底部/顶部一条</li>
 <li>不影响主流程</li>
 </ul>
 <hr>
-<h2><span id="2️⃣-interstitial插屏广告">2️⃣ Interstitial（插屏广告）</span></h2><ul>
+<h2 tabindex="-1"><span id="2️⃣-interstitial插屏广告">2️⃣ Interstitial（插屏广告）</span></h2>
+<ul>
 <li>全屏广告</li>
 <li>常见于页面切换时</li>
 </ul>
 <hr>
-<h2><span id="3️⃣-rewarded激励广告">3️⃣ Rewarded（激励广告）</span></h2><ul>
+<h2 tabindex="-1"><span id="3️⃣-rewarded激励广告">3️⃣ Rewarded（激励广告）</span></h2>
+<ul>
 <li>看广告换奖励（游戏最常见）</li>
 </ul>
 <hr>
-<h2><span id="4️⃣-native原生广告">4️⃣ Native（原生广告）</span></h2><ul>
+<h2 tabindex="-1"><span id="4️⃣-native原生广告">4️⃣ Native（原生广告）</span></h2>
+<ul>
 <li>和 App UI 融合</li>
 <li>自定义样式</li>
 </ul>
 <hr>
-<h1><span id="五-开发怎么接入以-android-x2f-rn-为例">五、开发怎么接入（以 Android &#x2F; RN 为例）</span></h1><h2><span id="基本步骤">基本步骤</span></h2><p> 1️⃣ 注册 AdMob 账号<br> 2️⃣ 创建 App 和广告位 ID<br> 3️⃣ 引入 SDK<br> 4️⃣ 请求广告并展示</p>
+<h1 tabindex="-1"><span id="五-开发怎么接入以-android-rn-为例">五、开发怎么接入（以 Android / RN 为例）</span></h1>
+<h2 tabindex="-1"><span id="基本步骤">基本步骤</span></h2>
+<p>1️⃣ 注册 AdMob 账号<br>
+2️⃣ 创建 App 和广告位 ID<br>
+3️⃣ 引入 SDK<br>
+4️⃣ 请求广告并展示</p>
 <hr>
-<h2><span id="示例rn-思路">示例（RN 思路）</span></h2><p><a target="_blank" rel="noopener" href="https://docs.page/invertase/react-native-google-mobile-ads">React Native Google Mobile Ads</a></p>
+<h2 tabindex="-1"><span id="示例rn-思路">示例（RN 思路）</span></h2>
+<p><a target="_blank" rel="noopener" href="https://docs.page/invertase/react-native-google-mobile-ads">React Native Google Mobile Ads</a></p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加载广告</span></span><br><span class="line"><span class="title class_">AdMobInterstitial</span>.<span class="title function_">setAdUnitID</span>(<span class="string">&quot;your-ad-unit-id&quot;</span>);</span><br><span class="line"><span class="keyword">await</span> <span class="title class_">AdMobInterstitial</span>.<span class="title function_">requestAdAsync</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 展示广告</span></span><br><span class="line"><span class="keyword">await</span> <span class="title class_">AdMobInterstitial</span>.<span class="title function_">showAdAsync</span>();</span><br></pre></td></tr></table></figure>
-
 <hr>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**<span class="keyword">import</span>** <span class="title class_">Admod</span> **<span class="keyword">from</span>** <span class="string">&#x27;./components/Admod&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>): <span class="variable constant_">JSX</span>.<span class="property">Element</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">NavigationContainer</span> <span class="attr">ref</span>=<span class="string">&#123;navigationRef&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Stack.Navigator</span> <span class="attr">initialRouteName</span>=<span class="string">&quot;MyComponent&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          &#123;/* <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;First&quot;</span> <span class="attr">component</span>=<span class="string">&#123;FirstPage&#125;</span> /&gt;</span> */&#125;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;MyComponent&quot;</span> <span class="attr">component</span>=<span class="string">&#123;MyComponent&#125;</span> <span class="attr">options</span>=<span class="string">&#123;&#123;headerShown:</span> <span class="attr">false</span>&#125;&#125;/&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Page&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Page&#125;</span> <span class="attr">options</span>=<span class="string">&#123;&#123;headerShown:</span> <span class="attr">false</span>&#125;&#125;/&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Admod&quot;</span> <span class="attr">component</span>=<span class="string">&#123;Admod&#125;</span> <span class="attr">options</span>=<span class="string">&#123;&#123;headerShown:</span> <span class="attr">false</span>&#125;&#125;/&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Stack.Screen</span> <span class="attr">name</span>=<span class="string">&quot;Games&quot;</span> <span class="attr">component</span>=<span class="string">&#123;DemoGames&#125;</span> <span class="attr">options</span>=<span class="string">&#123;&#123;headerShown:</span> <span class="attr">false</span>&#125;&#125;/&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Stack.Navigator</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">NavigationContainer</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import React, &#123; Component &#125; from &#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">View</span></span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="comment">// import &#123; BannerAd, BannerAdSize, TestIds &#125; from &#x27;react-native-google-mobile-ads&#x27;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// const adUnitId = __DEV__ ? TestIds.BANNER : &#x27;ca-app-pub-9531203765146692/7400802315&#x27;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// export class Admod extends Component &#123;</span></span><br><span class="line"><span class="comment">//   render() &#123;</span></span><br><span class="line"><span class="comment">//     return (</span></span><br><span class="line"><span class="comment">//       &lt;View&gt;</span></span><br><span class="line"><span class="comment">//         &lt;BannerAd</span></span><br><span class="line"><span class="comment">//           unitId=&#123;adUnitId&#125;</span></span><br><span class="line"><span class="comment">//           size=&#123;BannerAdSize.ANCHORED_ADAPTIVE_BANNER&#125;</span></span><br><span class="line"><span class="comment">//           requestOptions=&#123;&#123;</span></span><br><span class="line"><span class="comment">//             requestNonPersonalizedAdsOnly: true,</span></span><br><span class="line"><span class="comment">//           &#125;&#125;</span></span><br><span class="line"><span class="comment">//         /&gt;</span></span><br><span class="line"><span class="comment">//       &lt;/View&gt;</span></span><br><span class="line"><span class="comment">//     )</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// export default Admod</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Admod</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">View</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        </span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>安装依赖项</strong><br>首先，安装 react-native-google-mobile-ads 包及其对等依赖项：</p>
-<h1><span id="npm">npm</span></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-native-google-mobile-ads @react-native-firebase/app</span><br></pre></td></tr></table></figure>
-<h1><span id="yarn">yarn</span></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-native-google-mobile-ads @react-native-firebase/app</span><br><span class="line"><span class="number">2.</span>链接本地依赖项</span><br><span class="line">将本地依赖关联到你的项目：</span><br></pre></td></tr></table></figure>
-<h1><span id="for-ios">For iOS</span></h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ios</span><br><span class="line">pod install</span><br><span class="line">cd <span class="operator">..</span></span><br><span class="line"></span><br><span class="line"># <span class="type">For</span> <span class="type">Android</span>, no additional linking <span class="keyword">is</span> needed <span class="keyword">if</span> you are using <span class="type">React</span> <span class="type">Native</span> <span class="number">0.60</span> or higher.</span><br></pre></td></tr></table></figure>
-<h3><span id="3-配置-firebase">3. 配置 Firebase</span></h3><p>Google Mobile Ads 需要 Firebase，因此需要为项目设置 Firebase。</p>
+<p><strong>安装依赖项</strong><br>
+首先，安装 react-native-google-mobile-ads 包及其对等依赖项：</p>
+<h1 tabindex="-1"><span id="npm">npm</span></h1>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-native-google-mobile-ads @react-native-firebase/app</span><br></pre></td></tr></table></figure>
+<h1 tabindex="-1"><span id="yarn">yarn</span></h1>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-native-google-mobile-ads @react-native-firebase/app</span><br><span class="line"><span class="number">2.</span>链接本地依赖项</span><br><span class="line">将本地依赖关联到你的项目：</span><br></pre></td></tr></table></figure>
+<h1 tabindex="-1"><span id="for-ios">For iOS</span></h1>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ios</span><br><span class="line">pod install</span><br><span class="line">cd <span class="operator">..</span></span><br><span class="line"></span><br><span class="line"># <span class="type">For</span> <span class="type">Android</span>, no additional linking <span class="keyword">is</span> needed <span class="keyword">if</span> you are using <span class="type">React</span> <span class="type">Native</span> <span class="number">0.60</span> or higher.</span><br></pre></td></tr></table></figure>
+<h3 tabindex="-1"><span id="3-配置-firebase">3. 配置 Firebase</span></h3>
+<p>Google Mobile Ads 需要 Firebase，因此需要为项目设置 Firebase。</p>
 <p><strong>iOS 配置：</strong></p>
 <ol>
 <li>转到 Firebase 控制台，创建一个新项目，并向其中添加一个 iOS 应用。</li>
-<li>下载 GoogleService-Info.plist 文件并将其放在您的 ios&#x2F;YourProjectName 目录中。</li>
-<li>将以下内容添加到 ios&#x2F;YourProjectName&#x2F;AppDelegate.m ：</li>
+<li>下载 GoogleService-Info.plist 文件并将其放在您的 ios/YourProjectName 目录中。</li>
+<li>将以下内容添加到 ios/YourProjectName/AppDelegate.m ：</li>
 </ol>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">import</span> &lt;Firebase.h&gt;</span><br><span class="line"></span><br><span class="line"><span class="operator">-</span> (<span class="type">BOOL</span>)application:(<span class="type">UIApplication</span> <span class="operator">*</span>)application didFinishLaunchingWithOptions:(<span class="type">NSDictionary</span> <span class="operator">*</span>)launchOptions &#123;</span><br><span class="line">  [<span class="type">FIRApp</span> configure];</span><br><span class="line">  <span class="operator">...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>Android 配置：</strong></p>
 <ol>
 <li>在 Firebase 控制台中，向项目添加一个 Android 应用。</li>
-<li>下载 google-services.json 文件并将其放在您的 android&#x2F;app 目录中。</li>
-<li>修改 android&#x2F;build.gradle 和 android&#x2F;app&#x2F;build.gradle ：</li>
+<li>下载 google-services.json 文件并将其放在您的 android/app 目录中。</li>
+<li>修改 android/build.gradle 和 android/app/build.gradle ：</li>
 </ol>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// android/build.gradle</span></span><br><span class="line">buildscript &#123;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">&#x27;com.google.gms:google-services:4.3.3&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// android/app/build.gradle</span></span><br><span class="line">apply plugin: <span class="string">&#x27;com.google.gms.google-services&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3><span id="4-设置-admob">4. 设置 AdMob</span></h3><p>通过将 AdMob 应用 ID 添加到 Info.plist 和 AndroidManifest.xml ，配置应用以使用 Google AdMob。</p>
-<p>iOS 配置：将以下内容添加到您的 ios&#x2F;YourProjectName&#x2F;Info.plist ：</p>
+<h3 tabindex="-1"><span id="4-设置-admob">4. 设置 AdMob</span></h3>
+<p>通过将 AdMob 应用 ID 添加到 Info.plist 和 AndroidManifest.xml ，配置应用以使用 Google AdMob。</p>
+<p>iOS 配置：将以下内容添加到您的 ios/YourProjectName/Info.plist ：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;GADApplicationIdentifier&lt;/key&gt;</span><br><span class="line">&lt;string&gt;ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx&lt;/string&gt; &lt;!-- Replace with your AdMob App ID --&gt;</span><br></pre></td></tr></table></figure>
-<p>Android 配置：将以下内容添加到你的 android&#x2F;app&#x2F;src&#x2F;main&#x2F;AndroidManifest.xml ：</p>
+<p>Android 配置：将以下内容添加到你的 android/app/src/main/AndroidManifest.xml ：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;application&gt;</span><br><span class="line">    &lt;meta-<span class="keyword">data</span></span><br><span class="line">        android:name=<span class="string">&quot;com.google.android.gms.ads.APPLICATION_ID&quot;</span></span><br><span class="line">        android:value=<span class="string">&quot;ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx&quot;</span>/&gt; &lt;!-- Replace with your AdMob App ID --&gt;</span><br><span class="line">&lt;/application&gt;</span><br></pre></td></tr></table></figure>
-<h3><span id="5-实施广告组件">5. 实施广告组件</span></h3><p>现在，可以开始在您的 React Native 应用程序中展示广告。 react-native-google-mobile-ads 包支持各种广告格式，包括横幅广告，插页式广告和奖励广告。</p>
+<h3 tabindex="-1"><span id="5-实施广告组件">5. 实施广告组件</span></h3>
+<p>现在，可以开始在您的 React Native 应用程序中展示广告。 react-native-google-mobile-ads 包支持各种广告格式，包括横幅广告，插页式广告和奖励广告。</p>
 <p>Displaying a Banner Ad: 显示横幅广告：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">View</span>, <span class="title class_">StyleSheet</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">BannerAd</span>, <span class="title class_">BannerAdSize</span>, <span class="title class_">TestIds</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native-google-mobile-ads&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">BannerAd</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">unitId</span>=<span class="string">&#123;TestIds.BANNER&#125;</span> // <span class="attr">Replace</span> <span class="attr">with</span> <span class="attr">your</span> <span class="attr">actual</span> <span class="attr">Ad</span> <span class="attr">unit</span> <span class="attr">ID</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">size</span>=<span class="string">&#123;BannerAdSize.FULL_BANNER&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">requestOptions</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">requestNonPersonalizedAdsOnly:</span> <span class="attr">true</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = <span class="title class_">StyleSheet</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">container</span>: &#123;</span><br><span class="line">    <span class="attr">flex</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">justifyContent</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">    <span class="attr">alignItems</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
 <p>显示一个插页广告：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Button</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">InterstitialAd</span>, <span class="title class_">AdEventType</span>, <span class="title class_">TestIds</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native-google-mobile-ads&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> interstitial = <span class="title class_">InterstitialAd</span>.<span class="title function_">createForAdRequest</span>(<span class="title class_">TestIds</span>.<span class="property">INTERSTITIAL</span>, &#123;</span><br><span class="line">  <span class="attr">requestNonPersonalizedAdsOnly</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> unsubscribe = interstitial.<span class="title function_">onAdEvent</span>(<span class="function">(<span class="params"><span class="keyword">type</span></span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="title class_">AdEventType</span>.<span class="property">LOADED</span>) &#123;</span><br><span class="line">        interstitial.<span class="title function_">show</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    interstitial.<span class="title function_">load</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> unsubscribe;</span><br><span class="line">  &#125;, []);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">title</span>=<span class="string">&quot;Show Interstitial Ad&quot;</span> <span class="attr">onPress</span>=<span class="string">&#123;()</span> =&gt;</span> interstitial.load()&#125; /&gt;</span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span>;</span><br></pre></td></tr></table></figure>
 <p>显示一个奖励广告：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Button</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">RewardedAd</span>, <span class="title class_">RewardedAdEventType</span>, <span class="title class_">TestIds</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native-google-mobile-ads&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rewardedAd = <span class="title class_">RewardedAd</span>.<span class="title function_">createForAdRequest</span>(<span class="title class_">TestIds</span>.<span class="property">REWARDED</span>, &#123;</span><br><span class="line">  <span class="attr">requestNonPersonalizedAdsOnly</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> unsubscribe = rewardedAd.<span class="title function_">onAdEvent</span>(<span class="function">(<span class="params"><span class="keyword">type</span>, error, reward</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="title class_">RewardedAdEventType</span>.<span class="property">LOADED</span>) &#123;</span><br><span class="line">        rewardedAd.<span class="title function_">show</span>();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="title class_">RewardedAdEventType</span>.<span class="property">EARNED_REWARD</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;User earned reward of &#x27;</span>, reward);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    rewardedAd.<span class="title function_">load</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> unsubscribe;</span><br><span class="line">  &#125;, []);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">title</span>=<span class="string">&quot;Show Rewarded Ad&quot;</span> <span class="attr">onPress</span>=<span class="string">&#123;()</span> =&gt;</span> rewardedAd.load()&#125; /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1><span id="六-和-webview-x2f-jsbridge-的关系你可以这样理解">六、和 WebView &#x2F; JSBridge 的关系（你可以这样理解）</span></h1><p>如果你做的是：</p>
+<h1 tabindex="-1"><span id="六-和-webview-jsbridge-的关系你可以这样理解">六、和 WebView / JSBridge 的关系（你可以这样理解）</span></h1>
+<p>如果你做的是：</p>
 <p>👉 <strong>RN + WebView + H5</strong></p>
 <p>可以这样用：</p>
 <ul>
@@ -232,27 +256,45 @@
 </ul>
 <p>👉 流程：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H5 → JSBridge → RN → AdMob → 展示广告</span><br></pre></td></tr></table></figure>
-
 <hr>
-<h1><span id="七-优缺点">七、优缺点</span></h1><h2><span id="优点">✅ 优点</span></h2><ul>
+<h1 tabindex="-1"><span id="七-优缺点">七、优缺点</span></h1>
+<h2 tabindex="-1"><span id="优点">✅ 优点</span></h2>
+<ul>
 <li>接入简单</li>
 <li>广告资源多（Google生态）</li>
 <li>收益稳定</li>
 </ul>
 <hr>
-<h2><span id="缺点">❌ 缺点</span></h2><ul>
+<h2 tabindex="-1"><span id="缺点">❌ 缺点</span></h2>
+<ul>
 <li>国内访问不稳定（需要特殊环境）</li>
 <li>审核严格</li>
 <li>收益依赖用户量</li>
 </ul>
 <hr>
-<h1><span id="八-总结直接用">八、总结（直接用）</span></h1><p>👉<br> <strong>AdMob 是 Google 提供的移动广告变现平台，开发者可以通过接入 SDK 在 App 中展示广告获取收益。在实际项目中可以结合 WebView 和 JSBridge，由前端触发广告展示请求，原生侧调用 AdMob SDK 完成广告加载与展示，实现广告能力的统一管理。</strong></p>
+<h1 tabindex="-1"><span id="八-总结直接用">八、总结（直接用）</span></h1>
+<p>👉<br>
+<strong>AdMob 是 Google 提供的移动广告变现平台，开发者可以通过接入 SDK 在 App 中展示广告获取收益。在实际项目中可以结合 WebView 和 JSBridge，由前端触发广告展示请求，原生侧调用 AdMob SDK 完成广告加载与展示，实现广告能力的统一管理。</strong></p>
 
       </section>
 
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2026/05/16/Linux1/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">系统部署及维护常用linux命令整理</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -303,7 +345,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>23</span>
+        <span>25</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -366,14 +408,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/Githube/hexo/">
-            hexo (2)
+          <a href="/categories/html-css/">
+            html+css (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/html-css/">
-            html+css (1)
+          <a href="/categories/Githube/hexo/">
+            hexo (2)
           </a>
         </li>
       

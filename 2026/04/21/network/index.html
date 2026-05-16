@@ -136,9 +136,11 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1><span id="实施工程师网络排查指南">实施工程师网络排查指南</span></h1><p>网络排查是实施工程师必备技能。本指南涵盖从基础连通性到端口、DNS、路由排查的常用方法。</p>
+        <h1 tabindex="-1"><span id="实施工程师网络排查指南">实施工程师网络排查指南</span></h1>
+<p>网络排查是实施工程师必备技能。本指南涵盖从基础连通性到端口、DNS、路由排查的常用方法。</p>
 <hr>
-<h2><span id="目录">目录</span></h2><ol>
+<h2 tabindex="-1"><span id="目录">目录</span></h2>
+<ol>
 <li><a href="#network-basic">网络基础检查</a></li>
 <li><a href="#ip-gateway">IP 配置与网关</a></li>
 <li><a href="#ping-test">Ping 和连通性测试</a></li>
@@ -149,124 +151,110 @@
 <li><a href="#network-flow">网络排查流程示例</a></li>
 </ol>
 <hr>
-<h2><span id="网络基础检查">网络基础检查</span></h2><details><summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="网络基础检查">网络基础检查</span></h2>
+<details><summary>展开/收起</summary>
 <ol>
-<li>检查本机 IP 配置：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux</span></span><br><span class="line">ip addr show</span><br><span class="line">ifconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">ipconfig</span><br></pre></td></tr></table></figure></li>
-<li>检查网卡状态：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">ip link show</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">netsh interface show interface</span><br></pre></td></tr></table></figure></li>
+<li>检查本机 IP 配置：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Linux</span></span><br><span class="line">ip addr show</span><br><span class="line">ifconfig</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">ipconfig</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>检查网卡状态：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">ip link show</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">netsh interface show interface</span><br></pre></td></tr></table></figure>
+<ol start="3">
 <li>查看网络接口是否启用</li>
 </ol>
 </details>
-
-<h2><span id="ip-配置与网关">IP 配置与网关</span></h2><details> <summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="ip-配置与网关">IP 配置与网关</span></h2>
+<details> <summary>展开/收起</summary>
 <ol>
 <li>查看默认网关：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">ip route</span><br><span class="line">route -n</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">route print</span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>设置临时 IP（测试用）：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">sudo ip addr add 192.168.1.50/24 dev eth0</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">netsh interface ip set address name=&quot;Ethernet&quot; static 192.168.1.50 255.255.255.0 192.168.1.1</span><br></pre></td></tr></table></figure>
-
 <ol start="3">
 <li>测试网关连通性：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.1.1</span><br></pre></td></tr></table></figure>
-
 </details>
-
 <hr>
-<h2><span id="ping-和连通性测试">Ping 和连通性测试</span></h2><details> <summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="ping-和连通性测试">Ping 和连通性测试</span></h2>
+<details> <summary>展开/收起</summary>
 <ol>
 <li>测试目标主机是否可达：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ping 8.8.8.8 -c 4   # Linux</span><br><span class="line">ping 8.8.8.8        # Windows</span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>使用 <code>ping</code> 测试延迟与丢包情况</li>
 <li>使用 <code>arp -a</code> 查看局域网内 MAC 地址</li>
 </ol>
 </details>
-
 <hr>
-<h2><span id="端口与服务检测">端口与服务检测</span></h2><details> <summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="端口与服务检测">端口与服务检测</span></h2>
+<details> <summary>展开/收起</summary>
 <ol>
 <li>检查端口是否开放：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">nc -zv 192.168.1.100 80</span><br><span class="line">telnet 192.168.1.100 3306</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">Test-NetConnection -ComputerName 192.168.1.100 -Port 3306  # PowerShell</span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>查看本机监听端口：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">netstat -tulnp</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
-
 </details>
-
 <hr>
-<h2><span id="路由与-traceroute">路由与 traceroute</span></h2><details> <summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="路由与-traceroute">路由与 traceroute</span></h2>
+<details> <summary>展开/收起</summary>
 <ol>
 <li>查看路由路径：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">traceroute www.baidu.com</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">tracert www.baidu.com</span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>查看路由表：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">route -n</span><br><span class="line">ip route</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">route print</span><br></pre></td></tr></table></figure>
-
 </details>
-
 <hr>
-<h2><span id="dns-排查">DNS 排查</span></h2><details> <summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="dns-排查">DNS 排查</span></h2>
+<details> <summary>展开/收起</summary>
 <ol>
 <li>查询域名解析：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">nslookup www.baidu.com</span><br><span class="line">dig www.baidu.com</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">nslookup www.baidu.com</span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>刷新 DNS 缓存：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux (systemd)</span><br><span class="line">sudo systemd-resolve --flush-caches</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">ipconfig /flushdns</span><br></pre></td></tr></table></figure>
-
 </details>
-
 <hr>
-<h2><span id="日志与抓包分析">日志与抓包分析</span></h2><details> <summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="日志与抓包分析">日志与抓包分析</span></h2>
+<details> <summary>展开/收起</summary>
 <ol>
 <li>查看系统日志：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">journalctl -f</span><br><span class="line">tail -f /var/log/syslog</span><br><span class="line">tail -f /var/log/messages</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">Event Viewer</span><br></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>使用抓包工具分析：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Linux</span><br><span class="line">tcpdump -i eth0 port 3306</span><br><span class="line"></span><br><span class="line"># Windows</span><br><span class="line">Wireshark GUI</span><br></pre></td></tr></table></figure>
-
 </details>
-
 <hr>
-<h2><span id="网络排查流程示例">网络排查流程示例</span></h2><details> <summary>展开/收起</summary>
-
+<h2 tabindex="-1"><span id="网络排查流程示例">网络排查流程示例</span></h2>
+<details> <summary>展开/收起</summary>
 <ol>
 <li>检查本机 IP 与网关</li>
 <li>Ping 内网网关和服务器</li>
-<li>测试端口是否开放（Telnet &#x2F; NC &#x2F; PowerShell）</li>
+<li>测试端口是否开放（Telnet / NC / PowerShell）</li>
 <li>使用 traceroute 确认路由路径</li>
 <li>查询 DNS 是否正确解析</li>
 <li>查看日志和抓包分析异常</li>
 <li>如果需要，调整 IP 或防火墙策略</li>
 </ol>
 </details> ```
-
 <hr>
-<p>覆盖 <strong>基础检查 → IP&#x2F;网关 → Ping → 端口 → 路由 → DNS → 日志抓包 → 排查流程</strong></p>
+<p>覆盖 <strong>基础检查 → IP/网关 → Ping → 端口 → 路由 → DNS → 日志抓包 → 排查流程</strong></p>
 <p>兼顾 Linux 和 Windows 常用命令</p>
 
       </section>
@@ -338,7 +326,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>23</span>
+        <span>25</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -401,14 +389,14 @@
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/Githube/hexo/">
-            hexo (2)
+          <a href="/categories/html-css/">
+            html+css (1)
           </a>
         </li>
       
         <li class="categorys-list-item">
-          <a href="/categories/html-css/">
-            html+css (1)
+          <a href="/categories/Githube/hexo/">
+            hexo (2)
           </a>
         </li>
       

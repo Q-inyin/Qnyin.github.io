@@ -25,7 +25,7 @@
 
   
 
-  <title>JSBridge是什么 | Jon憨憨的博客</title>
+  <title>linux常用命令总结 | Jon憨憨的博客</title>
 
   
 
@@ -98,20 +98,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">JSBridge是什么</h1>
+          <h1 class="title-wrap">linux常用命令总结</h1>
           <h2 class="title-sub-wrap">
             <strong>微生翊</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2026-04-25T16:38:08.000Z" itemprop="datePublished">2026-04-26</time>
+            <time  class="article-date" datetime="2026-05-16T11:29:57.000Z" itemprop="datePublished">2026-05-16</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
-  
-    <li><a href="/tags/%E5%88%86%E4%BA%AB/">🏷️ 分享</a></li>
-  
-    <li><a href="/tags/Android/">🏷️ Android</a></li>
   
 </ul>
         </div>
@@ -136,134 +132,324 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 tabindex="-1"><span id="jsbridge-是什么webview-通信原理详解">JSBridge 是什么（WebView 通信原理详解）</span></h1>
-<h2 tabindex="-1"><span id="一-概念面试开头一句话">一、概念（面试开头一句话）</span></h2>
-<p><strong>JSBridge 是一种用于 WebView 场景下，实现 H5（JavaScript）与原生（Android / iOS / RN）双向通信的桥接机制。</strong></p>
-<p>👉 本质：</p>
-<blockquote>
-<p>把“跨语言调用”封装成类似接口调用（RPC）的通信方式</p>
-</blockquote>
-<hr>
-<h2 tabindex="-1"><span id="二-通俗理解">二、通俗理解</span></h2>
-<p>你可以把 JSBridge 理解为：</p>
-<p>👉 <strong>翻译 + 通信协议</strong></p>
+        <h1 tabindex="-1"><span id="linux常用命令总结">linux常用命令总结</span></h1>
+<!-- toc -->
 <ul>
-<li>JS 说：我要调用相机</li>
-<li>JSBridge：帮你转成原生能听懂的格式</li>
-<li>原生执行后：再把结果返回给 JS</li>
+<li><a href="#df">df</a></li>
+<li><a href="#free">free</a></li>
+<li><a href="#head">head</a></li>
+<li><a href="#tail">tail</a></li>
+<li><a href="#less">less</a></li>
+<li><a href="#wc">wc</a></li>
+<li><a href="#date">date</a></li>
+<li><a href="#cal">cal</a></li>
+<li><a href="#linux-pipeline">linux-pipeline |</a></li>
+<li><a href="#whoami">whoami：</a></li>
+<li><a href="#ps-ef">ps -ef：</a></li>
+<li><a href="#du-sh">du -sh：</a></li>
+<li><a href="#find">find：</a></li>
+<li><a href="#service">service：</a></li>
+<li><a href="#ifconfig">ifconfig：</a></li>
+<li><a href="#uptime">uptime：</a></li>
+<li><a href="#uname">uname：</a></li>
+<li><a href="#netstat-tnlp">netstat -tnlp：</a></li>
+<li><a href="#man">man：</a></li>
+<li><a href="#vim">vim：</a></li>
+<li><a href="#linux-network">linux-network</a></li>
+<li><a href="#ssh">ssh</a></li>
+<li><a href="#pscp">PSCP：</a></li>
+<li><a href="#chkconfig">chkconfig:</a></li>
+<li><a href="#ntp">ntp：</a></li>
+<li><a href="#iptables%E9%98%B2%E7%81%AB%E5%A2%99">Iptables防火墙</a></li>
+<li><a href="#cron">cron</a></li>
+<li><a href="#linux-permissions">linux-Permissions</a></li>
 </ul>
-<hr>
-<h2 tabindex="-1"><span id="三-为什么需要-jsbridge">三、为什么需要 JSBridge</span></h2>
-<h3 tabindex="-1"><span id="不用-jsbridge混乱写法">❌ 不用 JSBridge（混乱写法）</span></h3>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">ReactNativeWebView</span>.<span class="title function_">postMessage</span>(<span class="string">&quot;getToken&quot;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">ReactNativeWebView</span>.<span class="title function_">postMessage</span>(<span class="string">&quot;openCamera&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="️-使用-jsbridge规范写法">✔️ 使用 JSBridge（规范写法）</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bridge.call(&quot;getToken&quot;).then(token =&gt; &#123;</span><br><span class="line">  console.log(token);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>👉 优点：</p>
-<ul>
-<li>类似调用接口（API）</li>
-<li>支持 Promise</li>
-<li>易维护 / 易扩展</li>
-<li>解耦 H5 和原生</li>
-</ul>
-<h2 tabindex="-1"><span id="四-jsbridge-核心结构">四、JSBridge 核心结构</span></h2>
-<h3 tabindex="-1"><span id="1️⃣-js-发起调用">1️⃣ JS 发起调用</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bridge.call(&quot;openCamera&quot;, &#123; quality: 0.8 &#125;);</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 tabindex="-1"><span id="2️⃣-统一协议核心">2️⃣ 统一协议（核心）</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;method&quot;: &quot;openCamera&quot;,</span><br><span class="line">  &quot;params&quot;: &#123; &quot;quality&quot;: 0.8 &#125;,</span><br><span class="line">  &quot;callbackId&quot;: &quot;123&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>👉 类似 HTTP 请求结构</p>
-<hr>
-<h3 tabindex="-1"><span id="3️⃣-原生接收并执行">3️⃣ 原生接收并执行</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(method.equals(&quot;openCamera&quot;))&#123;</span><br><span class="line">    // 打开相机</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 tabindex="-1"><span id="4️⃣-原生返回结果">4️⃣ 原生返回结果</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;callbackId&quot;: &quot;123&quot;,</span><br><span class="line">  &quot;result&quot;: &quot;image_url&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 tabindex="-1"><span id="5️⃣-js-接收回调">5️⃣ JS 接收回调</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resolve(result);</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 tabindex="-1"><span id="五-完整通信流程">五、完整通信流程</span></h2>
-<h3 tabindex="-1"><span id="标准流程面试直接说这个">👉 标准流程（面试直接说这个）</span></h3>
-<ol>
-<li>JS 调用 <code>bridge.call</code></li>
-<li>封装成 JSON（method + params + callbackId）</li>
-<li>通过 WebView 通道发送</li>
-<li>原生解析 method 并执行</li>
-<li>执行完成返回结果</li>
-<li>JS 根据 callbackId 触发回调（resolve）</li>
-</ol>
-<hr>
-<h2 tabindex="-1"><span id="六-底层实现方式">六、底层实现方式</span></h2>
-<h3 tabindex="-1"><span id="android">Android</span></h3>
-<ul>
-<li><code>addJavascriptInterface</code></li>
-<li><code>shouldOverrideUrlLoading</code></li>
-<li><code>evaluateJavascript</code></li>
-</ul>
-<hr>
-<h3 tabindex="-1"><span id="react-native">React Native</span></h3>
-<ul>
-<li><code>window.ReactNativeWebView.postMessage</code></li>
-<li><code>onMessage</code></li>
-</ul>
-<hr>
-<h3 tabindex="-1"><span id="ios">iOS</span></h3>
-<ul>
-<li><code>WKWebView</code></li>
-<li><code>messageHandlers</code></li>
-</ul>
-<hr>
-<h2 tabindex="-1"><span id="七-简单-jsbridge-示例rn版">七、简单 JSBridge 示例（RN版）</span></h2>
-<h3 tabindex="-1"><span id="js-侧">JS 侧</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function call(method, params) &#123;</span><br><span class="line">  return new Promise((resolve) =&gt; &#123;</span><br><span class="line">    const callbackId = Date.now();</span><br><span class="line"></span><br><span class="line">    window.ReactNativeWebView.postMessage(</span><br><span class="line">      JSON.stringify(&#123; method, params, callbackId &#125;)</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    window[callbackId] = resolve;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 tabindex="-1"><span id="rn-侧">RN 侧</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onMessage=&#123;(e) =&gt; &#123;</span><br><span class="line">  const &#123; method, callbackId &#125; = JSON.parse(e.nativeEvent.data);</span><br><span class="line"></span><br><span class="line">  if (method === &quot;getToken&quot;) &#123;</span><br><span class="line">    webview.injectJavaScript(`</span><br><span class="line">      window.$&#123;callbackId&#125;(&quot;abc123&quot;);</span><br><span class="line">    `);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 tabindex="-1"><span id="八-进阶设计加分点">八、进阶设计（加分点）</span></h2>
-<h3 tabindex="-1"><span id="1️⃣-统一协议">1️⃣ 统一协议</span></h3>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;method&quot;: &quot;xxx&quot;,</span><br><span class="line">  &quot;params&quot;: &#123;&#125;,</span><br><span class="line">  &quot;callbackId&quot;: &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 tabindex="-1"><span id="2️⃣-promise-化">2️⃣ Promise 化</span></h3>
-<ul>
-<li>支持 <code>.then()</code></li>
-<li>提升开发体验</li>
-</ul>
-<hr>
-<h3 tabindex="-1"><span id="3️⃣-安全控制">3️⃣ 安全控制</span></h3>
-<ul>
-<li>校验来源 URL</li>
-<li>限制 method 白名单</li>
-<li>防止 JS 注入攻击</li>
-</ul>
-<hr>
-<h2 tabindex="-1"><span id="九-本质总结重点">九、本质总结（重点）</span></h2>
-<p>👉 JSBridge 本质类似：</p>
-<ul>
-<li>RPC（远程调用）</li>
-<li>HTTP API 调用</li>
-</ul>
-<h3 tabindex="-1"><span id="区别">区别：</span></h3>
+<!-- tocstop -->
 <table>
 <thead>
 <tr>
-<th>类型</th>
-<th>场景</th>
+<th>目录</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>HTTP</td>
-<td>跨网络</td>
+<td><code>/bin</code></td>
+<td>存储普通用户可执行的二进制命令</td>
 </tr>
 <tr>
-<td>JSBridge</td>
-<td>跨运行环境（JS ↔ Native）</td>
+<td><code>/sbin</code></td>
+<td>存储系统管理员(root)使用的命令</td>
+</tr>
+<tr>
+<td><code>/dev</code></td>
+<td>存放设备文件（U盘、光驱等）</td>
+</tr>
+<tr>
+<td><code>/etc</code></td>
+<td>存放系统配置文件</td>
+</tr>
+<tr>
+<td><code>/home</code></td>
+<td>普通用户家目录</td>
+</tr>
+<tr>
+<td><code>/root</code></td>
+<td>root 用户家目录</td>
+</tr>
+<tr>
+<td><code>/proc</code></td>
+<td>存储系统运行中的进程信息</td>
+</tr>
+<tr>
+<td><code>/tmp</code></td>
+<td>存放临时文件</td>
+</tr>
+<tr>
+<td><code>/usr</code></td>
+<td>用户安装的软件和程序</td>
+</tr>
+<tr>
+<td><code>/var</code></td>
+<td>日志文件、缓存等</td>
+</tr>
+<tr>
+<td><code>/mnt</code></td>
+<td>挂载目录</td>
+</tr>
+<tr>
+<td><code>/boot</code></td>
+<td>系统启动相关文件</td>
+</tr>
+<tr>
+<td><code>/lib</code></td>
+<td>系统函数库</td>
+</tr>
+<tr>
+<td><code>/opt</code></td>
+<td>第三方软件安装目录</td>
 </tr>
 </tbody>
 </table>
-<h2 tabindex="-1"><span id="十-总结">十、总结</span></h2>
-<p>JSBridge 是一种在 WebView 场景中实现 H5 与原生双向通信的桥接机制，本质是对 postMessage 或 addJavascriptInterface 等能力的封装，通过统一的协议（method + params + callbackId）实现类似 RPC 的调用方式，使前端可以像调用接口一样调用原生能力。</p>
+<h3 tabindex="-1"><span id="df">df</span></h3>
+<p>df -h：查看磁盘空间情况</p>
+<h3 tabindex="-1"><span id="free">free</span></h3>
+<p>free -m :查看内存使用情况<br>
+-m 以M为单位<br>
+-h 匹配相应的单位<br>
+swap 用户临时内存，当系统真实内存不够用的时候可以临时使用磁盘空间来充当内存</p>
+<h3 tabindex="-1"><span id="head">head</span></h3>
+<p>head -n:<br>
+查看一个文件的前n行，如果不指定n，则默认显示前10行</p>
+<h3 tabindex="-1"><span id="tail">tail</span></h3>
+<p>tail ：<br>
+-n查看一个文件的后行，如果不指定n，默认显示后10行<br>
+-f 查看一个文件的动态变化</p>
+<h3 tabindex="-1"><span id="less">less</span></h3>
+<p>less:<br>
+查看文件，以较少的内容进行输出按下辅助功能建（数字+回车、空格+上下方向键查看更多）</p>
+<h3 tabindex="-1"><span id="wc">wc</span></h3>
+<p>wc：<br>
+统计文件内容信息（包含行数，单词数，字节数）<br>
+wc -l 表示统计行数<br>
+wc -c 表示统计的字节数<br>
+wc -w 统计单词数 依照空格判断单词数量</p>
+<h3 tabindex="-1"><span id="date">date</span></h3>
+<p>date指令：表示操作时间日期（读取，设置）<br>
+语法1：date +%F 输出形式：</p>
+<p>语法2：date “+%F %T”</p>
+<p>语法3：date “+%Y-%m-%d %H:%M:S”</p>
+<p>语法4：day(天)，year(年)，month(月)</p>
+<p>date -d “-1 day” “+%Y-%m-%d %H:%M:S” -表示1天前<br>
+date -d “1 year” “+%Y-%m-%d %H:%M:S” 表示1年后的今天<br>
+%F:表示完整的年月日<br>
+%T:表示完整的时分秒</p>
+<h3 tabindex="-1"><span id="cal">cal</span></h3>
+<p>cal指令：用于操作日历<br>
+语法1：cal 直接输出当前月份的日历，等价于cal -1<br>
+语法2：cal -y 输出一年的日历</p>
+<h3 tabindex="-1"><span id="linux-pipeline">linux-pipeline |</span></h3>
+<p>作用：管道一般可以用于”过滤”，”特殊”，”扩展处理”<br>
+语法：管道不能单独使用，必须需要配合指令一起使用，作用主要时辅助作用，grep 主要用于过滤。ps -ef|grep java</p>
+<h3 tabindex="-1"><span id="whoami">whoami：</span></h3>
+<p>作用：显示当前登录的用户名，一般用于shell脚本，用于获取当前用户方便记录日志</p>
+<h3 tabindex="-1"><span id="ps-ef">ps -ef：</span></h3>
+<p>top指令：</p>
+<p>运行top的时候，可以按下方便的快捷键</p>
+<p>M: 表示将结果按照内存(MEM)从高到低进行降序排列<br>
+P： 表示将结果按照CPU使用率从高到低降序排列<br>
+1：当服务器拥有多个cpu的时候可以使用”1”,快捷键来切换是否显示各个cpu的详细信息</p>
+<h3 tabindex="-1"><span id="du-sh">du -sh：</span></h3>
+<p>查看目录的真实大小<br>
+语法：du -sh 目录路径<br>
+-s：只显示汇总的带线啊哦<br>
+-h：表示高可读性的形式进行显示</p>
+<h3 tabindex="-1"><span id="find">find：</span></h3>
+<p>作用查找文件<br>
+语法：find 路径范围 选项 选项的值<br>
+选项：<br>
+-name：按照文档名称进行搜索（支持模糊搜索）<br>
+-type d/f：按照文档的类型进行搜索<br>
+文档类型：d，表示目录。f表示文件</p>
+<h3 tabindex="-1"><span id="service">service：</span></h3>
+<p>用于控制一些软件的服务启动/停止/重启<br>
+语法：service 服务名 start/stop/restart<br>
+kill指令：杀死正在运行的进程<br>
+语法：kill 进程ID</p>
+<h3 tabindex="-1"><span id="ifconfig">ifconfig：</span></h3>
+<p>用于操作网卡相关指令<br>
+eth0：表示linu种的一个网卡，eth0是其名称<br>
+lo：loop，本地回还网卡，其ip地址一般都是127.0.0.1也是一个网卡名称<br>
+注：inetaddr就是网卡的ip地址</p>
+<h3 tabindex="-1"><span id="uptime">uptime：</span></h3>
+<p>输出计算机的持续在线时间（计算机从开机到现在运行的时间）<br>
+语法：uptime</p>
+<p>user：用户数量<br>
+load average：最近1分钟，5分钟，15分钟的负载</p>
+<h3 tabindex="-1"><span id="uname">uname：</span></h3>
+<p>获取计算机操作系统类型</p>
+<p>语法1：uname -a:获取操作系统全部系统信息（包含类型，全部的主机名，内核版本，发布时间，开源计划）</p>
+<h3 tabindex="-1"><span id="netstat-tnlp">netstat -tnlp：</span></h3>
+<p>选项：<br>
+-t 列出tcp协议的连接<br>
+-n 表示将地址从字母组合转化为ip地址，将协议转化为端口形式显示<br>
+-l 表示过滤出”stat(状态)”列出其值为LISTEN（监听）的连接<br>
+-p 表示显示连接的进程的pid</p>
+<h3 tabindex="-1"><span id="man">man：</span></h3>
+<p>语法：man 命令 （退出按下q）<br>
+进阶命令：</p>
+<p>如何在命令行种快速删除光标前/后的内容？ 前ctrl+u 后ctrl+k</p>
+<h3 tabindex="-1"><span id="vim">vim：</span></h3>
+<p>存在三种模式：<br>
+命令模式：在该模式下是不能对文件直接编辑，可以输入快捷建进行操作（打开文件后默认进入的模式）<br>
+编辑模式（输入模式）：输入i，在该模式下可以对文件的内容进行编辑<br>
+末行模式:进入方式，按下”:”即可进入，按两下esc推出。可以在末行输入命令对文件进行操作（搜索，替换，保存，推出，撤销，高亮等等）。:!外部命令 作用：当外部命令执行结束之后按下任意键回到vim编辑器中<br>
+语法1：vim +数字 文件路径 作用：打开指定的文件，并且将光标移动到指定行<br>
+语法2：vim +/关键字 文件路径 作用：打开指定的文件，并高亮显示关键词<br>
+语法3：vim 文件路径1 文件路径2 文件路径3 作用：同时打开多个文件<br>
+命令模式与末行模式：<br>
+快捷键：<br>
+Shift +6 光标移动到行首<br>
+Shift +4 光标移动到行尾<br>
+gg 光标移动到首行<br>
+Shift +g 光标移动到末行（大写G）<br>
+Ctrl +b 或pgup 向上翻屏<br>
+Ctrl +f 或pgdn 向下翻屏<br>
+数字yy 以光标所在行为准（包含当前行），向下复制指定的行数，在想要粘贴的地方按p即可粘贴<br>
+可视块：<br>
+Ctrl v 进入可视块（针对想要复制一部分可以选择使用），然后按方向键选择选中区域，yy键粘贴，p键复制<br>
+剪切/删除光标所在行：<br>
+语法1：dd删除所在行（删除后下一行上移）<br>
+语法2：数字dd 作用：剪切/删除光标所在行为准（包含当前行），下下删除/剪切指定的行数<br>
+语法3：shift D 作用：剪切/删除光标所在的当前行（但是删除之后下一行不上移）<br>
+撤销/恢复<br>
+语法1：输入：u 作用撤销操作<br>
+语法2：输入：ctrl + r 恢复（取消）之前的撤销操作<br>
+光标的快速移动：<br>
+输入：数字+G 作用：将光标移动到指定的行<br>
+输入：数字+方向键 作用：以当前光标为准，根据方向键，（向上/向下/向左/向右）移动指定的行数<br>
+输入：:数字 作用：末行模式下，移动到指定行<br>
+搜索/查找<br>
+输入：”/关键词” 在搜索结果中切换上/下一个结果：N/n (next)<br>
+替换：<br>
+输入：:s/搜索的关键词关键字/新的内容/ 替换光标所在行的第一处符合条件的内容<br>
+输入：:s/搜索的关键词/新的内容/g 替换光标所在行的全部符合条件的内容<br>
+输入：:%s/搜索的关键词/新的内容 替换整个文档中每行第一个符合条件的内容<br>
+输入：:%s/搜索的关键词/新的内容/g 替换整个文档中每行符合条件的内容<br>
+注：<br>
+%表示整个文件，g表示全局<br>
+显示行号：:set nu 不让显示行号：:set nonu<br>
+当vim同时打开多个文件时，在末行模式下进行切换文件<br>
+查看当前已打开的文件名称：”:files”</p>
+<p>注：<br>
+%a：表示当前正在打开的文件<br>
+#：表示上一个打开的文件<br>
+切换文件的方式：<br>
+1、如果需要指定切换文件的名称，则可以输入：”:open 文件名”<br>
+2、可以通过其他命令来切换上一个文件/下一个文件<br>
+输入：”:bn”，切换到下一个文件（back next）<br>
+输入：”:bp”，切换到上一个文件（back prev）<br>
+编辑模式:</p>
+<p>重点进入方式：i，a<br>
+扩展功能<br>
+vim中计算器的使用：挡在编辑文件的时候突然需要使用计算器去计算一些公式，vim自身集成了一个简易的计算器<br>
+进入编辑模式<br>
+按下按键ctrl + R，然后输入 “=”,此时光标会变成最后一行<br>
+输入需要计算的内容，按下回车<br>
+Vim的配置：<br>
+Vim配置有三种情况：<br>
+在我文件打开的时候在末行模式下输入的配置（临时的）<br>
+个人配置文件（~/.vimrc，如果没有可自行创建）(以个人配置文件为准，其次全局的配置)<br>
+全局配置文件（vim自带，/etc/vimrc）<br>
+新建好个人配置文件后进入编辑<br>
+在配置文件中进行配置比如显示行号：:set nu<br>
+别名机制：<br>
+作用：相当于创建一些属于自己的自定义命令<br>
+别名机制依靠一个别名映射文件：~/.bashrc</p>
+<p>注意：<br>
+如果想要使命令生效，需要重新登录用户/新建终端</p>
+<h3 tabindex="-1"><span id="linux-network">linux-network</span></h3>
+<p>停止某个网卡：ifdown 网卡名<br>
+开启某个网卡：ifup 网卡名<br>
+注意：实际工作中不禁用网卡</p>
+<h3 tabindex="-1"><span id="ssh">ssh</span></h3>
+<p>端口范围0-65535，不能最大了<br>
+默认端口22</p>
+<h3 tabindex="-1"><span id="pscp">PSCP：</span></h3>
+<p>通过命令行工具打开（配置环境变量）</p>
+<p>语法：<br>
+pscp 选项 用户名@linux主机地址:资源路径 window本地地址（通过pscp下载到window本地）<br>
+pscp 选项 资源路径 用户名@linux主机地址:远程路径（window上传到Linux）<br>
+Pscp 选项 -ls 用户名@linux主机地址（列出远程路径下的结构）</p>
+<h3 tabindex="-1"><span id="chkconfig">chkconfig:</span></h3>
+<p>linux 的开机启动项的管理服务</p>
+<p>语法：</p>
+<p>chkconfig --list 开启启动服务查询（3级别形式关闭时，命令行模式默认开机不启动）<br>
+chkconfig --del 服务名 删除指定的服务<br>
+chkconfig --add 服务名 添加开机启动项<br>
+chkconfig --level 连在一起的启动级别 服务名 on/off 设置某级别下开机启动</p>
+<h3 tabindex="-1"><span id="ntp">ntp：</span></h3>
+<p>主要用于对计算机时间同步管理<br>
+上游的概念：</p>
+<p>语法：<br>
+ntpdate 上游服务器ip</p>
+<h3 tabindex="-1"><span id="iptables防火墙">Iptables防火墙</span></h3>
+<p>查看规则：iptable -L -n<br>
+-L：表示列出规则<br>
+-n：表示将单词表达形式改为数字形式显示</p>
+<h3 tabindex="-1"><span id="cron">cron</span></h3>
+<p>定点执行任务的计划</p>
+<p>语法：<br>
+crontab 选项<br>
+常用选项</p>
+<p>-l：列出指定用户的计划任务列表<br>
+-e：编辑指定用户的计划任务列表<br>
+-u：指定用户名，不指定则为当前用户<br>
+-r：删除指定用户的任务列表</p>
+<p>注：</p>
+<p>计划任务规则语法格式，以行为单位一行则为一个计划<br>
+分（0~59） 时（0~23） 日(1~31) 月（1~12） 周（0~6，0为周日） 需要执行的命令<br>
+例：0 0 * * * reboot<br>
+四个符号：</p>
+<p><em>：表示取值范围中的每一个数字<br>
+-：最连续区间表达式,想要表达1~7则写成：1-7<br>
+/：表示每多少个，例：每10分钟一次，则写成：</em>/10<br>
+,：表示多个取值。例：想8点，10点执行，则写成8,10<br>
+crontab权限问题：本身时任何用户都可以创建，超管可以通过配置设置某些用户不允许设置计划任务</p>
+<p>配置文件位置：/etc/cron.deny 直接输入用户，一行一个</p>
+<h3 tabindex="-1"><span id="linux-permissions">linux-Permissions</span></h3>
+<p>lsblk ：<br>
+查看硬盘和分区分布<br>
+lscpu :<br>
+查看cpu的相关信息<br>
+fdisk -l：</p>
+<p>查看磁盘分区情况、<br>
+lspci|grep Ethernet<br>
+查看网卡硬件信息<br>
+dmidecode -t biOS<br>
+查看BioS相关信息<br>
+dmidecode<br>
+查看主板型号</p>
 
       </section>
 
@@ -271,28 +457,14 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2026/04/26/rn-4/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">rn接入google admob</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2026/04/25/rn-2/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">RN注入JS WebView与安卓之间的简单通讯</h2>
+        <a href="/2026/05/16/Linux1/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">系统部署及维护常用linux命令整理</h2>
         </a>
       
       <div class="card-text--row">Older</div>
