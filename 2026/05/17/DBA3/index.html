@@ -25,7 +25,7 @@
 
   
 
-  <title>JavaScript中数组遍历的方式 | Jon憨憨的博客</title>
+  <title>Mariadb/xx_job部署 | Jon憨憨的博客</title>
 
   
 
@@ -49,7 +49,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://w.wallhaven.cc/full/z8/wallhaven-z8kkxo.jpg)"></div>
+    <div class="post-image" style="background-image: url(/images/wallhaven-q2vo8d.jpg)"></div>
   
 
   <!-- navbar -->
@@ -98,24 +98,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">JavaScript中数组遍历的方式</h1>
+          <h1 class="title-wrap">Mariadb/xx_job部署</h1>
           <h2 class="title-sub-wrap">
             <strong>微生翊</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-11-16T18:19:07.000Z" itemprop="datePublished">2022-11-17</time>
+            <time  class="article-date" datetime="2026-05-17T14:58:10.000Z" itemprop="datePublished">2026-05-17</time>
           </h2>
           <ul class="wrap-list dark">
-  
-    <li><a href="/categories/JavaScript/">📒 JavaScript</a></li>
   
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/js/">🏷️ js</a></li>
+    <li><a href="/tags/%E5%AE%9E%E6%96%BD/">🏷️ 实施</a></li>
   
-    <li><a href="/tags/%E6%95%B0%E7%BB%84/">🏷️ 数组</a></li>
-  
-    <li><a href="/tags/%E5%88%86%E4%BA%AB/">🏷️ 分享</a></li>
+    <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">🏷️ 数据库</a></li>
   
 </ul>
         </div>
@@ -140,56 +136,67 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h4 tabindex="-1"><span id="整理了一些数组遍历的方式">整理了一些数组遍历的方式</span></h4>
-<h3 tabindex="-1"><span id="1-for循环">1. for循环</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最简单的一种循环遍历方式,也是使用频率最高的</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)&#123;</span><br><span class="line">    <span class="comment">//打印每一个数组的元素</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(arr[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="2for-in对象遍历">2.for in（对象遍历）</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(arr[key]) <span class="comment">//输出的key是数组的索引值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="3-for-of-不能循环对象">3. for of （不能循环对象）</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> val <span class="keyword">of</span> arr)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="4es6-中的-foreach-数组元素有几个该方法的回调就会执行几次">4.ES6 中的 forEach( ) 数组元素有几个，该方法的回调就会执行几次</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item,index,arr</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item + <span class="string">&#x27;---&#x27;</span> + index + <span class="string">&#x27;---&#x27;</span> + arr)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>];</span><br><span class="line"></span><br><span class="line">array1.<span class="title function_">forEach</span>(<span class="function"><span class="params">element</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(element));</span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="5map映射一个数组或者对象也可以遍历json对象">5.map映射一个数组或者对象,也可以遍历json对象</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array1 = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// pass a function to map</span></span><br><span class="line"><span class="keyword">const</span> map1 = array1.<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map1);</span><br><span class="line"><span class="comment">// expected output: Array [2, 8, 18, 32]</span></span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="6filter-过滤遍历数组过滤出符合条件的元素并返回一个新数组">6.filter 过滤遍历数组，过滤出符合条件的元素并返回一个新数组</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> words = [<span class="string">&#x27;spray&#x27;</span>, <span class="string">&#x27;limit&#x27;</span>, <span class="string">&#x27;elite&#x27;</span>,<span class="string">&#x27;exuberant&#x27;</span>, <span class="string">&#x27;destruction&#x27;</span>, <span class="string">&#x27;present&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = words.<span class="title function_">filter</span>(<span class="function"><span class="params">word</span> =&gt;</span> word.<span class="property">length</span> &gt; <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line"><span class="comment">// expected output: Array [&quot;exuberant&quot;,&quot;destruction&quot;, &quot;present&quot;]</span></span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="7some-遍历数组只要有一个以上的元素满足条件-就返回true-否则返回-false">7.some 遍历数组，只要有一个以上的元素满足条件 就返回true ，否则返回 false</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// checks whether an element is even</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">even</span> = (<span class="params">element</span>) =&gt; element % <span class="number">2</span> === <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(array.<span class="title function_">some</span>(even));</span><br><span class="line"><span class="comment">// expected output: true</span></span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="8every-遍历数组每一个元素都满足条件-则返回-true-否则返回-false">8.every 遍历数组，每一个元素都满足条件 则返回 true 否则返回 false</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> somebool = datalsit.<span class="title function_">some</span>(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item.<span class="property">done</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 返回的是布尔值  </span></span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="9find-es6-遍历数组返回符合条件的第一个元素如果没有符合条件的元素则返回-undefined">9.find ES6 遍历数组，返回符合条件的第一个元素，如果没有符合条件的元素则返回 undefined</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]</span><br><span class="line"><span class="keyword">let</span> num = arr1.<span class="title function_">find</span>(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item === <span class="number">3</span> </span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num) <span class="comment">// 3 </span></span><br></pre></td></tr></table></figure>
-<h3 tabindex="-1"><span id="10findindex-es6遍历数组返回符合条件的一个元素的索引如果没有符合条件的元素则返回-1">10.findIndex ES6遍历数组，返回符合条件的一个元素的索引，如果没有符合条件的元素则返回-1</span></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> num = arr2.<span class="title function_">findIndex</span>(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> item === <span class="number">3</span> </span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(num) <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+        <h2 tabindex="-1"><span id="安装mariadb">安装mariadb</span></h2>
+<p>首先从附件下载mariadb安装包，点击下载：mariadb10.5.18.tar.gz</p>
+<p>将压缩包传到/opt目录下：</p>
+<p>解压：</p>
+<p><code>[root@lds opt]# tar -zxvf mariadb.tar.gz</code></p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/33.png" alt></p>
+<p>为.sh脚本文件添加可执行权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@lds opt]# cd mariadb</span><br><span class="line"></span><br><span class="line">[root@localhost mariadb]# chmod +x *.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/34.png" alt></p>
+<p>执行安装脚本即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mariadb]# yum -y install libaio-0.3.109-13.el7.x86_64.rpm</span><br><span class="line">[root@localhost mariadb]# ./mariadb-10.5.18-install.sh</span><br></pre></td></tr></table></figure>
+<h3 tabindex="-1"><span id="mariadb一键安装必看">mariadb一键安装必看：</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 查看mariadb的root用户密码  </span><br><span class="line">ls -l  /dev/disk/by-uuid|grep -v sr0|awk NR==2&#x27;&#123;print&#125;&#x27;|awk &#x27;&#123;print $9&#125;&#x27;|awk -F\- &#x27;&#123;print $1&#125;&#x27;</span><br><span class="line"></span><br><span class="line"># 在终端登录终端登录mysql</span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line"># 授予 root 用户在所有数据库和所有主机上的所有权限，并使用密码 xxxxxx 进行登录验证。</span><br><span class="line">grant all privileges on *.* to &#x27;root&#x27;@&#x27;%&#x27; identified by &#x27;xxxxxx&#x27;;</span><br><span class="line"></span><br><span class="line">#常用的创建数据库、用户、授权的命令汇总</span><br><span class="line"></span><br><span class="line">#创建数据库</span><br><span class="line">CREATE DATABASE IF NOT EXISTS xxxxdb(数据库名) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;</span><br><span class="line"></span><br><span class="line">#创建用户</span><br><span class="line">CREATE USER &#x27;xxx&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;xxxxxx&#x27;;</span><br><span class="line"></span><br><span class="line">#给新创建的用户授权数据库</span><br><span class="line">grant all privileges on xxxdb数据库.* to &#x27;xxx用户&#x27;@&#x27;%&#x27; identified by &#x27;xxxxxx&#x27;;</span><br><span class="line"></span><br><span class="line">#刷新权限</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>安装报错问题及解决(必看)：</p>
+<p>1、报错1：error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/35.png" alt></p>
+<p>问题解决：是因为缺少这个文件libaio.so.1<br>
+压缩包里面放了一个离线包，直接使用yum安装即可<br>
+[root@localhost mariadb]# yum -y install libaio-0.3.109-13.el7.x86_64.rpm<br>
+安装完成，重复执行安装脚本<br>
+[root@localhost mariadb]# ./mariadb-10.5.18-install.sh</p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/36.png" alt></p>
+<h2 tabindex="-1"><span id="xxl_job公共组件安装部署">xxl_job公共组件安装部署​​​​​​​</span></h2>
+<p>(1)下载安装包连接 点击下载即可：xxl_job.tar<br>
+<img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/37.png" alt></p>
+<h3 tabindex="-1"><span id="2-mariadb的命令小贴士">(2) mariadb的命令小贴士</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(1)创建数据库</span><br><span class="line"></span><br><span class="line">CREATE DATABASE IF NOT EXISTS xxl_job DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;</span><br><span class="line"></span><br><span class="line">(2)创建用户</span><br><span class="line"></span><br><span class="line">CREATE USER &#x27;xxl_job&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;Hzsun88994788&#x27;;</span><br><span class="line"></span><br><span class="line">(3)给新创建的用户授权数据库</span><br><span class="line"></span><br><span class="line">grant all privileges on xxl_job.* to &#x27;xxl_job&#x27;@&#x27;%&#x27; identified by &#x27;Hzsun88994788&#x27;;</span><br><span class="line"></span><br><span class="line">(4)刷新权限</span><br><span class="line"></span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<h3 tabindex="-1"><span id="3数据库脚本执行说明">(3)数据库脚本执行说明</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">注意点十分重要！下列脚本1，脚本2执行完后适用于5.1.22.0531版本，若平台版本更高，请执行对应版本的xxl-job升级脚本</span><br><span class="line"></span><br><span class="line">（1）执行脚本1（5.1.22.0531建表）：tables_xxl_job.sql</span><br><span class="line"></span><br><span class="line">（2）执行脚本2（5.1.22.0531建任务）：xxl_InitData_2.3.sql</span><br><span class="line"></span><br><span class="line">按需执行以下升级，不升级不执行</span><br><span class="line"></span><br><span class="line">（3）升级脚本（5.1.22.0731版本）：MariaDB_Update[xxlJob_5.1.22.0531-5.1.22.0731].sql #不升级0731请勿执行此脚本</span><br><span class="line"></span><br><span class="line">（4）升级脚本（8.0.22.1231）：XxlJob_MariaDB_Upgrade[5.1.22.0731-8.0.22.1231].sql #不升级融合版请勿执行此脚本</span><br><span class="line"></span><br><span class="line">！！！ 易通5.1.23.0430版本全包自带xxl初始化脚本，我们执行创建表脚本</span><br><span class="line"></span><br><span class="line">tables_xxl_job.sql和下图全包里面的脚本即可</span><br></pre></td></tr></table></figure>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/38.png" alt></p>
+<h4 tabindex="-1"><span id="4修改配置xxl_job配置文件">(4)修改配置xxl_job配置文件</span></h4>
+<p>在windows中，使用winRAR或者其他软件打开xxl-job-admin-2.3.1.jar，修改里面的application.properties配置文件</p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/39.png" alt></p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/40.png" alt></p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/41.png" alt></p>
+<h4 tabindex="-1"><span id="5启动xxl_job">(5)启动xxl_job</span></h4>
+<p>vi startup.sh做个启动脚本，输入以下内容(编辑完脚本后退出保存并给权限：chmod +x *.sh)</p>
+<p>#!/bin/bash</p>
+<p>nohup java -jar xxl-job-admin-2.3.1.jar 2&gt;&amp;1 &amp;</p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/42.png" alt></p>
+<p>管理web访问地址xxl_job地址：ip:端口/xxl-job-admin</p>
+<p>账号密码：admin/123456</p>
+<h4 tabindex="-1"><span id="6检查任务调度">(6)检查任务调度</span></h4>
+<p>检查执行器管理，自动注册是否成功，如果如图所示就是注册成功了，查看日志是否正常</p>
+<p><img src="https://tech.hzlinks.net/upimage/lids/images/2023/12/25/43.png" alt></p>
+<p>如果注册不成功，跟统一调度有关系，查看服务是否启动，或者重启统一调度服务，然后就会自动注册进来</p>
+
       </section>
 
       
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2022/12/20/canvas/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">canvas</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2022/11/17/ICT/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">IT+CT</h2>
+        <a href="/2026/05/17/DBA2/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Jdk/Oracle部署</h2>
         </a>
       
       <div class="card-text--row">Older</div>
